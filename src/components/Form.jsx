@@ -6,7 +6,8 @@ border: ${props => props.border || "1px solid #808080"};
 width: ${props => props.width || "30%"};
 border-radius: ${props => props.borderradius || "20px"};
 box-shadow: ${props => props.boxShadow || "none"};
-${props => props.padding && css`padding: 20px 20px;`}
+${props => props.padding && css`padding: 20px 20px;`};
+${props => props.margin && css`margin: 20px auto;`};
 `;
 
 export default function Form(props) {

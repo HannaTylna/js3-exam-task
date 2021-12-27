@@ -1,4 +1,12 @@
 import React, { useState } from "react";
+import Button from "./Button";
+import Form from "./Form";
+import Heading2 from "./Heading2";
+import Input from "./Input";
+import Label from "./Label";
+import Row from "./Row";
+import Column from "./Column";
+import Flex from "./Flex";
 
 export default function CustomerCreate(props) {
    const [name, setName] = useState("");
@@ -11,7 +19,7 @@ export default function CustomerCreate(props) {
    const [phoneNumber, setPhoneNumber] = useState("");
 
    function renderInput(type, placeholder, value, setValue) {
-      return <input
+      return <Input
          type={type}
          placeholder={placeholder}
          value={value}
@@ -48,29 +56,78 @@ export default function CustomerCreate(props) {
    }
 
    return (
-      <div>
-         <h2>Create a new customer</h2>
-         <form onSubmit={handleOnSubmit}>
-            <label htmlFor="name">Name: </label>
-            {renderInput("text", "Name", name, setName)} <br />
-            <label htmlFor="organisationNr">Organisation Number: </label>
-            {renderInput("text", "Organisation Number", organisationNr, setOrganisationNr)} <br />
-            <label htmlFor="vatNr">VAT number: </label>
-            {renderInput("text", "VAT number", vatNr, setVatNr)} <br />
-            <label htmlFor="reference">Reference: </label>
-            {renderInput("text", "Reference", reference, setReference)} <br />
-            <label htmlFor="paymentTerm">Payment Term: </label>
-            {renderInput("text", "Payment Term", paymentTerm, setPaymentTerm)} <br />
-            <label htmlFor="website">Website: </label>
-            {renderInput("text", "Website", website, setWebsite)} <br />
-            <label htmlFor="email">Email: </label>
-            {renderInput("text", "Email", email, setEmail)} <br />
-            <label htmlFor="phoneNumber">Phone Number: </label>
-            {renderInput("text", "Phone Number", phoneNumber, setPhoneNumber)}
-            <br /><br />
-            
-            <button type="submit">Create Customer</button>
-         </form>
-      </div>
+      <Flex>
+         <Form margin width="70%" padding boxShadow="5px 5px 5px 5px #262626" onSubmit={handleOnSubmit}>
+            <Row>
+               <Heading2>Create a new customer</Heading2>
+            </Row>
+            <Row>
+               <Column col="4">
+                  <Label htmlFor="name">Name: </Label>
+               </Column>
+               <Column col="8">
+                  {renderInput("text", "Name", name, setName)} <br />
+               </Column>
+            </Row>
+            <Row>
+               <Column col="4">
+                  <Label htmlFor="organisationNr">Organisation Number: </Label>
+               </Column>
+               <Column col="8">
+                  {renderInput("text", "Organisation Number", organisationNr, setOrganisationNr)} <br />
+               </Column>
+            </Row>
+            <Row>
+               <Column col="4">
+                  <Label htmlFor="vatNr">VAT number: </Label>
+               </Column>
+               <Column col="8">
+                  {renderInput("text", "VAT number", vatNr, setVatNr)} <br />
+               </Column>
+            </Row>
+            <Row>
+               <Column col="4">
+                  <Label htmlFor="reference">Reference: </Label>
+               </Column>
+               <Column col="8">
+                  {renderInput("text", "Reference", reference, setReference)} <br />
+               </Column>
+            </Row>
+            <Row>
+               <Column col="4">
+                  <Label htmlFor="paymentTerm">Payment Term: </Label>
+               </Column>
+               <Column col="8">
+                  {renderInput("text", "Payment Term", paymentTerm, setPaymentTerm)} <br />
+               </Column>
+            </Row>
+            <Row>
+               <Column col="4">
+                  <Label htmlFor="website">Website: </Label>
+               </Column>
+               <Column col="8">
+                  {renderInput("text", "Website", website, setWebsite)} <br />
+               </Column>
+            </Row>
+            <Row>
+               <Column col="4">
+                  <Label htmlFor="email">Email: </Label>
+               </Column>
+               <Column col="8">
+                  {renderInput("text", "Email", email, setEmail)} <br />
+               </Column>
+            </Row>
+            <Row>
+               <Column col="4">
+                  <Label htmlFor="phoneNumber">Phone Number: </Label>
+               </Column>
+               <Column col="8">
+                  {renderInput("text", "Phone Number", phoneNumber, setPhoneNumber)}
+                  <br /><br />
+               </Column>
+            </Row>
+            <Button type="submit">Create a new customer</Button>
+         </Form>
+      </Flex>
    )
 }
