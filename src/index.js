@@ -4,10 +4,22 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
+import { createGlobalStyle } from 'styled-components';
+
+const Global = createGlobalStyle`
+   * {
+      margin: 0 auto;
+      padding: 0;
+      box-sizing: border-box;
+      background: #FFEFD5;
+      font-family: "Times New Roman", Times, serif;
+   }
+`
 
 ReactDOM.render(
    <React.StrictMode>
       <BrowserRouter>
+         <Global/>
          <App />
       </BrowserRouter>
    </React.StrictMode>,

@@ -1,9 +1,20 @@
-import React, {useState} from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { InformationContext } from "../App";
+
+import Heading1 from "../components/Heading1";
+import Label from "../components/Label";
+import Input from "../components/Input";
+import Flex from "../components/Flex";
+import Row from "../components/Row";
+import Column from "../components/Column";
+import Form from "../components/Form";
+import Button from "../components/Button";
+
 
 export default function LoginPage() {
-   const [email, setEmail] = useState("");
-   const [password, setPassword] = useState("");
+   const { email, setEmail } = useContext(InformationContext);
+   const { password, setPassword } = useContext(InformationContext);
    const navigate = useNavigate();
 
    function handleOnSubmit(e) {
@@ -26,25 +37,40 @@ export default function LoginPage() {
       })
    }
    return (
-      <div>
-         <h1>Login</h1>
-         <form onSubmit={handleOnSubmit}>
-            <label htmlFor="email">Email: </label>
-            <input
-               type="text"
-               placeholder="Email"
-               value={email}
-               onChange={e => setEmail(e.target.value)}
-            /><br/>
-            <label htmlFor="password">Password: </label>
-            <input
-               type="password"
-               placeholder="Password"
-               value={password}
-               onChange={e => setPassword(e.target.value)}
-            /><br/><br/>
-            <button type="submit">Login</button>
-         </form>
-      </div>
+      <Flex margin padding>
+         <Heading1 margin="50px auto">Welcome to Registration24!<br/><br/>Please, enter your data!</Heading1>
+         <Form padding boxShadow="5px 5px 5px 5px #262626" onSubmit={handleOnSubmit}>
+            <Row>
+               <Heading1>Login</Heading1>
+            </Row>
+            <Row>
+               <Column col="3">
+                  <Label htmlFor="email">Email: </Label>
+               </Column>
+               <Column col="6">
+                  <Input
+                     type="text"
+                     placeholder="Email"
+                     value={email}
+                     onChange={e => setEmail(e.target.value)}
+                  /><br/>
+               </Column>
+            </Row>
+            <Row>
+               <Column col="3" >
+                  <Label htmlFor="password">Password: </Label>
+               </Column>
+               <Column col="6">
+                  <Input
+                     type="password"
+                     placeholder="Password"
+                     value={password}
+                     onChange={e => setPassword(e.target.value)}
+                  /><br/><br/>
+               </Column>
+            </Row>
+            <Button type="submit">Login</Button>
+         </Form>
+      </Flex>
    )
 }
