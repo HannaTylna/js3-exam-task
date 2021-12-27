@@ -1,25 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useContext, useCallback } from "react";
 import { Link } from "react-router-dom";
 import CustomerCreate from "../components/CustomerCreate";
+import { InformationContext } from "../App";
 
 
 export default function HomePage() {
-   const [customerList, setCustomerList] = useState(null);
-   const [myData, setMyData] = useState(null);
+   const { customerList, setCustomerList } = useContext(InformationContext);
+   const { myData, setMyData } = useContext(InformationContext);
 
-   useEffect(() => {
-      fetchData()
-      getUserInformation()
-   }, [])
-
-   function fetchData() {
-      const url="https://frebi.willandskill.eu/api/v1/customers/"
+   const fetchData = useCallback(() => {
+      const url = "https://frebi.willandskill.eu/api/v1/customers/"
       const token = localStorage.getItem("exam");
-      fetch(url,{
-         method:"GET",
-         headers:{
-               "Content-Type":"application/json",
-               "Authorization":`Bearer ${token}`
+      fetch(url, {
+         method: "GET",
+         headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
          }
       })
          .then((res) => res.json())
@@ -27,8 +23,9 @@ export default function HomePage() {
             console.log(data.results)
             return setCustomerList(data.results)
          })
-   }
-   function getUserInformation(){
+   }, [setCustomerList]);
+
+   const getUserInformation = useCallback(() => {
       const token = localStorage.getItem("exam");
       const url = "https://frebi.willandskill.eu/api/v1/me";
       fetch(url,{
@@ -40,8 +37,16 @@ export default function HomePage() {
       })
       .then(res => res.json())
       .then(data => setMyData(data))
-   }
+   }, [setMyData])
 
+   useEffect(() => {
+
+      fetchData();
+      getUserInformation();
+
+   }, [fetchData, getUserInformation])
+
+   
    return (
       <div>
          <h1>Home Page</h1>
