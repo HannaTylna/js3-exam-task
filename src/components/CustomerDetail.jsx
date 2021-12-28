@@ -3,7 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import Button from './Button';
 import Flex from './Flex';
 import Heading1 from './Heading1';
+import Input from './Input';
 import Paragragh from './Paragragh';
+import Row from './Row';
+import Column from "./Column";
+import Label from "./Label";
 
 export default function CustomerDetail(props) {
    const [customerDetail, setCustomerDetail] = useState({});
@@ -19,9 +23,11 @@ export default function CustomerDetail(props) {
    
 
    function renderInput(type, placeholder, value, setValue) {
-      return <input
+      return <Input
+         type={type}
+         placeholder={placeholder}
          value={value}
-         onChange={e => setValue(e.target.value)}
+         onChange={(e) => { setValue(e.target.value) }}
       />
    }
 
@@ -45,9 +51,6 @@ export default function CustomerDetail(props) {
       fetchData();
    }, [props.id])
 
-   //function handleOnSelect(id) {
-   //   console.log(id);
-   //}
 
    function handleOnDelete(id) {
       console.log(id);
@@ -63,15 +66,46 @@ export default function CustomerDetail(props) {
       })
       .then((res) => navigate("/home"))
    }
+   function handleOnSelect(id) {
+      console.log(id);
+      const url = `https://frebi.willandskill.eu/api/v1/customers/${props.id}/`;
+      const token = localStorage.getItem("exam");
+      fetch(url, {
+         method: "GET",
+         headers:{
+            "Content-Type":"application/json",
+            "Authorization":`Bearer ${token}`
+         }
+      })
+      .then(res => res.json())
+      .then(data => {
+         console.log(data);
+         setName(customerDetail.name);
+         setOrganisationNr(customerDetail.organisationNr);
+         setVatNr(customerDetail.vatNr);
+         setReference(customerDetail.reference);
+         setPaymentTerm(customerDetail.paymentTerm);
+         setWebsite(customerDetail.website);
+         setEmail(customerDetail.email);
+         setPhoneNumber(customerDetail.phoneNumber);
+      })
+   }
+
    function handleOnSubmit(e) {
       e.preventDefault()
-      const url = `https://frebi.willandskill.eu/api/v1/customers/${props.id}/`
-      const token = localStorage.getItem("exam")
+      const regex = /^SE[0-9]{10}$/; 
+      if (!regex.test(vatNr)) {
+         alert(
+            "Wrong format! You need to write SExxxxxxxxxx."
+         )
+         return false;
+      }
+      const url = `https://frebi.willandskill.eu/api/v1/customers/${props.id}/`;
+      const token = localStorage.getItem("exam");
       const headers = {
          'Content-Type': 'application/json',
-         'Authorization': `Bearer ${token}`,
-         'Accept': 'application/json',
-      }
+         'Authorization': `Bearer ${token}`
+      };
       const payload = {
          name,
          organisationNr,
@@ -87,17 +121,12 @@ export default function CustomerDetail(props) {
          headers: headers,
          body: JSON.stringify(payload)
       })
-      .then(res => res.json())
-         .then(data => {
-            setCustomerDetail(data)
-            setName(data.name)
-            setOrganisationNr(data.organisationNr)
-            setVatNr(data.vatNr)
-            setReference(data.reference)
-            setPaymentTerm(data.paymentTerm)
-            setWebsite(data.website)
-            setEmail(data.email)
-            setPhoneNumber(data.phoneNumber)
+         .then((result) => {
+            result.json()
+            .then(data => {
+               console.log(data);
+               setCustomerDetail(data);
+            })
          })
    }
 
@@ -115,33 +144,78 @@ export default function CustomerDetail(props) {
                <Paragragh margin><strong>Email:</strong> {customerDetail.email}</Paragragh>
                <Paragragh margin><strong>Phone number:</strong> {customerDetail.phoneNumber}</Paragragh>
                <Flex margin>
-                  {/*<Button onClick={() => handleOnSelect(customerDetail.id)}>Update information</Button>*/}
+                  <Button onClick={() => handleOnSelect(customerDetail.id)}>Update information</Button>
                   <Button onClick={() => handleOnDelete(customerDetail.id)}>Delete customer</Button>
                </Flex>
             </>
          ) : "Not found"}
+
          <form onSubmit= {handleOnSubmit}>
-            <label htmlFor="name">Name: </label>
-            <input
-               value={name}
-               onChange={e => setName(e.target.value)}
-            /><br />
-            {/*{renderInput({name}, setName)} <br />*/}
-            {/*<label htmlFor="organisationNr">Organisation Number: </label>
-            {renderInput( customerDetail.organisationNr, setOrganisationNr)} <br />
-            <label htmlFor="vatNr">VAT number: </label>
-            {renderInput( customerDetail.vatNr, setVatNr)} <br />
-            <label htmlFor="reference">Reference: </label>
-            {renderInput( customerDetail.reference, setReference)} <br />
-            <label htmlFor="paymentTerm">Payment Term: </label>
-            {renderInput( customerDetail.paymentTerm, setPaymentTerm)} <br />
-            <label htmlFor="website">Website: </label>
-            {renderInput(customerDetail.website, setWebsite)} <br />
-            <label htmlFor="email">Email: </label>
-            {renderInput(customerDetail.email, setEmail)} <br />
-            <label htmlFor="phoneNumber">Phone Number: </label>
-            {renderInput( customerDetail.phoneNumber, setPhoneNumber)}*/}
-            <br /><br />
+            <Row>
+               <Column col="4">
+                  <Label htmlFor="name">Name: </Label>
+               </Column>
+               <Column col="8">
+                  {renderInput("text", "Name", name, setName)} <br />
+               </Column>
+            </Row>
+            <Row>
+               <Column col="4">
+                  <Label htmlFor="organisationNr">Organisation Number: </Label>
+               </Column>
+               <Column col="8">
+                  {renderInput("text", "Organisation Number", organisationNr, setOrganisationNr)} <br />
+               </Column>
+            </Row>
+            <Row>
+               <Column col="4">
+                  <Label htmlFor="vatNr">VAT number: </Label>
+               </Column>
+               <Column col="8">
+                  {renderInput("text", "SExxxxxxxxxx", vatNr, setVatNr)} <br />
+               </Column>
+            </Row>
+            <Row>
+               <Column col="4">
+                  <Label htmlFor="reference">Reference: </Label>
+               </Column>
+               <Column col="8">
+                  {renderInput("text", "Reference", reference, setReference)} <br />
+               </Column>
+            </Row>
+            <Row>
+               <Column col="4">
+                  <Label htmlFor="paymentTerm">Payment Term: </Label>
+               </Column>
+               <Column col="8">
+                  {renderInput("number", "xx", paymentTerm, setPaymentTerm)} <br />
+               </Column>
+            </Row>
+            <Row>
+               <Column col="4">
+                  <Label htmlFor="website">Website: </Label>
+               </Column>
+               <Column col="8">
+                  {renderInput("text", "exempel.com", website, setWebsite)} <br />
+               </Column>
+            </Row>
+            <Row>
+               <Column col="4">
+                  <Label htmlFor="email">Email: </Label>
+               </Column>
+               <Column col="8">
+                  {renderInput("text", "exempel@exempel.com", email, setEmail)} <br />
+               </Column>
+            </Row>
+            <Row>
+               <Column col="4">
+                  <Label htmlFor="phoneNumber">Phone Number: </Label>
+               </Column>
+               <Column col="8">
+                  {renderInput("text", "077 777 77 77", phoneNumber, setPhoneNumber)}
+                  <br /><br />
+               </Column>
+            </Row>
             
             <Button type="submit">Update Customer</Button>
          </form>
