@@ -1,19 +1,17 @@
 import React, { useEffect, useContext, useCallback } from "react";
-import { Link } from "react-router-dom";
 import CustomerCreate from "../components/CustomerCreate";
-import { InformationContext } from "../App";
+import { CustomerContext } from "../App";
 import Heading1 from "../components/Heading1";
 import Row from "../components/Row";
 import Column from "../components/Column";
-import LinkStyled from "../components/LinkStyled";
-import Paragragh from "../components/Paragragh";
-import Button from "../components/Button";
 import Heading2 from "../components/Heading2";
+import MyData from "../components/MyData";
+import Flex from "../components/Flex";
+import { Link } from "react-router-dom";
 
 
 export default function HomePage() {
-   const { customerList, setCustomerList } = useContext(InformationContext);
-   const { myData, setMyData } = useContext(InformationContext);
+   const { customerList, setCustomerList } = useContext(CustomerContext);
 
    const fetchData = useCallback(() => {
       const url = "https://frebi.willandskill.eu/api/v1/customers/"
@@ -32,24 +30,9 @@ export default function HomePage() {
          })
    }, [setCustomerList]);
 
-   const getUserInformation = useCallback(() => {
-      const token = localStorage.getItem("exam");
-      const url = "https://frebi.willandskill.eu/api/v1/me";
-      fetch(url,{
-         method:"GET",
-         headers:{
-            "Content-Type":"application/json",
-            "Authorization":`Bearer ${token}`
-         }
-      })
-      .then(res => res.json())
-      .then(data => setMyData(data))
-   }, [setMyData])
-
    useEffect(() => {
       fetchData();
-      getUserInformation();
-   }, [fetchData, getUserInformation])
+   }, [fetchData])
 
    
    return (
@@ -57,31 +40,35 @@ export default function HomePage() {
          <Heading1 border="2px double #000" width="50%" padding="5px">Home Page</Heading1>
          <Row>
             <Column col="3" textAlign="center">
-               {myData &&
-                  <Paragragh margin>
-                     Hello, <strong>{myData.firstName} {myData.lastName}</strong>.<br />
-                     Your email is <strong>{myData.email}</strong>
-                  </Paragragh>
-               }
-               <LinkStyled href="/" border="1px solid #000" borderRadius="10px" padding margin>Log out</LinkStyled>
+               <MyData />
             </Column>
             <Column col="9">
                <Heading2>Customers</Heading2>
-               {customerList && customerList.map((customer, index) => {
-                  return(
-                     <div  key={index}>
-                        <ul>
-                           <li>
-                              <h3><Link to={`${customer.id}`}>{customer.name}</Link></h3>
-                              <p>
-                                 <strong>Email:</strong>{customer.email}<br />
-                                 <strong>ID:</strong>{customer.id}
-                              </p>
-                           </li>
-                        </ul>
-                     </div>
-                  )
-               })}
+               <Flex>
+                  <Column col="1"></Column>
+                  <Column col="3"><strong>Email</strong></Column>
+                  <Column col="3"><strong>ID</strong></Column>
+                  <Column col="1"></Column>
+               </Flex>
+               
+                  {customerList && customerList.map((customer, index) => {
+                     return(
+                        <Flex margin key={index}>
+                           <Column col="1">
+                              <h3>{customer.name}</h3>
+                           </Column>
+                           <Column col="3">
+                              <p>{customer.email}</p>
+                           </Column>
+                           <Column col="3">
+                              <p>{customer.id}</p>
+                           </Column>
+                           <Column col="1">
+                              <Link to={`${customer.id}`}><strong>...</strong></Link>
+                           </Column>
+                        </Flex>
+                     )
+                  })}
                <CustomerCreate onSuccess={fetchData} />
                {/*<Button onClick={fetchData}>Refresh</Button>*/}
             </Column>

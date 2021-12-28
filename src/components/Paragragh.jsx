@@ -6,5 +6,5 @@ ${props => props.margin && css`margin: 20px;`};
 `;
 
 export default function Paragragh(props) {
-   return <StyledParagragh {...props} />
+   return <StyledParagragh {...props}>{props.children}</StyledParagragh>
 }

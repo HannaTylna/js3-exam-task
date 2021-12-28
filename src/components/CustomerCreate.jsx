@@ -28,7 +28,16 @@ export default function CustomerCreate(props) {
    }
 
    function handleOnSubmit(e) {
-      e.preventDefault()
+      e.preventDefault();
+
+      const regex = /^SE[0-9]{10}$/; 
+      if (!regex.test(vatNr)) {
+         alert(
+            "Wrong format! You need to write SExxxxxxxxxx."
+         )
+         return false;
+      }
+
       const payload = {
          name,
          organisationNr,
@@ -39,6 +48,8 @@ export default function CustomerCreate(props) {
          email,
          phoneNumber
       }
+      
+
       const url = "https://frebi.willandskill.eu/api/v1/customers/";
       const token = localStorage.getItem("exam");
       fetch(url, {
@@ -54,7 +65,7 @@ export default function CustomerCreate(props) {
             return props.onSuccess()
          })
    }
-
+   
    return (
       <Flex>
          <Form margin width="70%" padding boxShadow="5px 5px 5px 5px #262626" onSubmit={handleOnSubmit}>
@@ -82,7 +93,7 @@ export default function CustomerCreate(props) {
                   <Label htmlFor="vatNr">VAT number: </Label>
                </Column>
                <Column col="8">
-                  {renderInput("text", "VAT number", vatNr, setVatNr)} <br />
+                  {renderInput("text", "SExxxxxxxxxx", vatNr, setVatNr)} <br />
                </Column>
             </Row>
             <Row>
@@ -98,7 +109,7 @@ export default function CustomerCreate(props) {
                   <Label htmlFor="paymentTerm">Payment Term: </Label>
                </Column>
                <Column col="8">
-                  {renderInput("text", "Payment Term", paymentTerm, setPaymentTerm)} <br />
+                  {renderInput("text", "xx", paymentTerm, setPaymentTerm)} <br />
                </Column>
             </Row>
             <Row>
@@ -106,7 +117,7 @@ export default function CustomerCreate(props) {
                   <Label htmlFor="website">Website: </Label>
                </Column>
                <Column col="8">
-                  {renderInput("text", "Website", website, setWebsite)} <br />
+                  {renderInput("text", "exempel.com", website, setWebsite)} <br />
                </Column>
             </Row>
             <Row>
@@ -114,7 +125,7 @@ export default function CustomerCreate(props) {
                   <Label htmlFor="email">Email: </Label>
                </Column>
                <Column col="8">
-                  {renderInput("text", "Email", email, setEmail)} <br />
+                  {renderInput("text", "exempel@exempel.com", email, setEmail)} <br />
                </Column>
             </Row>
             <Row>
@@ -122,7 +133,7 @@ export default function CustomerCreate(props) {
                   <Label htmlFor="phoneNumber">Phone Number: </Label>
                </Column>
                <Column col="8">
-                  {renderInput("text", "Phone Number", phoneNumber, setPhoneNumber)}
+                  {renderInput("text", "077 777 77 77", phoneNumber, setPhoneNumber)}
                   <br /><br />
                </Column>
             </Row>

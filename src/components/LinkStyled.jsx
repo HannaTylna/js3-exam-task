@@ -4,15 +4,15 @@ import styled, {css} from 'styled-components';
 const StyledLink = styled.a`
 text-decoration: none;
 color: #000;
-font-weight: bold;
+font-weight: ${props => props.fontWeight || "bold"};
 font-size: ${props => props.fontSize || '18px'};
 margin-top: ${props => props.marginTop};
 border: ${props => props.border};
 border-radius: ${props => props.borderRadius};
 ${props => props.padding && css`padding: 3px;`};
-background: #808080;
+background: ${props => props.background || "#808080"};
 &:hover{
-   background: #806080;
+   background:  ${props => props.background || "#806080"};
 }
 `;
 

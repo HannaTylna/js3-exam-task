@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { InformationContext } from "../App";
 
 import Heading1 from "../components/Heading1";
 import Label from "../components/Label";
@@ -13,8 +12,8 @@ import Button from "../components/Button";
 
 
 export default function LoginPage() {
-   const { email, setEmail } = useContext(InformationContext);
-   const { password, setPassword } = useContext(InformationContext);
+   const [email, setEmail] = useState("");
+   const [password, setPassword] = useState("");
    const navigate = useNavigate();
 
    function handleOnSubmit(e) {
