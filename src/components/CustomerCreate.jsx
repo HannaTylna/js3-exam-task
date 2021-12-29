@@ -30,14 +30,23 @@ export default function CustomerCreate(props) {
    function handleOnSubmit(e) {
       e.preventDefault();
 
-      const regex = /^SE[0-9]{10}$/; 
-      if (!regex.test(vatNr)) {
+      const regexVatNr = /^SE[0-9]{10}$/;
+      const regexEmail = /^\w+([-]?\w+)*@\w+([-]?\w+)*(\.\w{2,3})+$/;
+
+      if (!regexVatNr.test(vatNr)) {
          alert(
             "Wrong format! You need to write SExxxxxxxxxx."
          )
          return false;
+      } else
+      
+      if (!regexEmail.test(email)) {
+         alert(
+            "You have entered an invalid email address!"
+         )
+         return false;
       }
-
+      
       const payload = {
          name,
          organisationNr,
