@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import Heading1 from "../components/Heading1";
+import Paragragh from "../components/Paragragh";
 import Label from "../components/Label";
 import Input from "../components/Input";
 import Flex from "../components/Flex";
@@ -37,7 +38,13 @@ export default function LoginPage() {
    }
    return (
       <Flex margin padding>
-         <Heading1 margin="50px auto">Welcome to Registration24!<br/><br/>Please, enter your data!</Heading1>
+         <Column>
+            <Heading1 margin="50px auto">Welcome to Registration24!<br /><br />Please, enter your data!</Heading1>
+            <Paragragh>If you want to register, please click
+               <Link to="/auth/users/"> here</Link>
+            </Paragragh>
+         </Column>
+         
          <Form padding boxShadow="5px 5px 5px 5px #262626" onSubmit={handleOnSubmit}>
             <Row>
                <Heading1>Login</Heading1>
