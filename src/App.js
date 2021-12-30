@@ -1,14 +1,14 @@
 import React, { useState, createContext }  from "react";
 import { Route, Routes } from "react-router-dom";
+
 import "./App.css";
+import Container from "./components/Container";
 import CustomerDetailPage from "./pages/CustomerDetailPage";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
-import Container from "./components/Container";
 import UserCreatePage from "./pages/UserCreatePage";
 
 const MyDataContext = createContext([]);
-const CustomerContext = createContext([]);
    
 function App() {
 
@@ -17,20 +17,18 @@ function App() {
    
 
    return (
-      <MyDataContext.Provider value={{ myData, setMyData}}>
-         <CustomerContext.Provider value={{customerList, setCustomerList}}>
-            <Container>
-               <Routes>
-                  <Route path="/" element={<LoginPage /> }/>
-                  <Route path="/home" element={<HomePage />} />
-                  <Route path="/home/:id" element={<CustomerDetailPage />}/>
-                  <Route path="/auth/users/" element={<UserCreatePage />} />
-               </Routes>
-            </Container>
-         </CustomerContext.Provider>
+      <MyDataContext.Provider value={{ myData, setMyData, customerList, setCustomerList }}>
+         <Container>
+            <Routes>
+               <Route path="/" element={<LoginPage /> }/>
+               <Route path="/home" element={<HomePage />} />
+               <Route path="/home/:id" element={<CustomerDetailPage />}/>
+               <Route path="/auth/users/" element={<UserCreatePage />} />
+            </Routes>
+         </Container>
       </MyDataContext.Provider>
    );
 }
 
-export { MyDataContext, CustomerContext };
+export { MyDataContext };
 export default App;

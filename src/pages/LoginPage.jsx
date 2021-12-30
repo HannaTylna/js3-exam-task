@@ -1,15 +1,17 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import Heading1 from "../components/Heading1";
+import Heading2 from "../components/Heading2";
 import Paragragh from "../components/Paragragh";
 import Label from "../components/Label";
 import Input from "../components/Input";
+import Form from "../components/Form";
+import Button from "../components/Button";
+import Link from "../components/Link";
 import Flex from "../components/Flex";
 import Row from "../components/Row";
 import Column from "../components/Column";
-import Form from "../components/Form";
-import Button from "../components/Button";
 
 
 export default function LoginPage() {
@@ -37,46 +39,56 @@ export default function LoginPage() {
       })
    }
    return (
-      <Flex margin padding>
-         <Column>
-            <Heading1 margin="50px auto">Welcome to Registration24!<br /><br />Please, enter your data!</Heading1>
-            <Paragragh>If you want to register, please click
-               <Link to="/auth/users/"> here</Link>
-            </Paragragh>
-         </Column>
-         
-         <Form padding boxShadow="5px 5px 5px 5px #262626" onSubmit={handleOnSubmit}>
+      <>
+         <Flex col marginTop="100px">
             <Row>
-               <Heading1>Login</Heading1>
+               <Column col="5">
+                  <Heading1 center>Welcome to Registration24!<br/><br/>Please, enter your data!</Heading1>
+                  <Paragragh marginBottom="50px" textAlign="center">If you want to register, please click
+                     <Link href="/auth/users/"> here</Link>
+                  </Paragragh>
+               </Column>
+               <Column col="7">
+                  <Form padding boxShadow="5px 5px 5px 5px #262626"  onSubmit={handleOnSubmit}>
+                     <Row>
+                        <Heading2>Login</Heading2>
+                     </Row>
+                     <Row flex>
+                        <Column col="4">
+                           <Label htmlFor="email">Email: </Label>
+                        </Column>
+                        <Column col="8">
+                           <Input
+                              type="text"
+                              placeholder="Email"
+                              value={email}
+                              setValue={setEmail}
+                              required="required"
+                           /><br/>
+                        </Column>
+                     </Row>
+                     <Row flex>
+                        <Column col="4">
+                           <Label htmlFor="password">Password: </Label>
+                        </Column>
+                        <Column col="8">
+                           <Input
+                              type="password"
+                              placeholder="Password"
+                              value={password}
+                              setValue={setPassword}
+                              required="required"
+                           /><br/>
+                        </Column>
+                        
+                     </Row>
+                     <Button type="submit">Login</Button>
+                  </Form>
+               </Column>
+            
             </Row>
-            <Row>
-               <Column col="3">
-                  <Label htmlFor="email">Email: </Label>
-               </Column>
-               <Column col="6">
-                  <Input
-                     type="text"
-                     placeholder="Email"
-                     value={email}
-                     onChange={e => setEmail(e.target.value)}
-                  /><br/>
-               </Column>
-            </Row>
-            <Row>
-               <Column col="3" >
-                  <Label htmlFor="password">Password: </Label>
-               </Column>
-               <Column col="6">
-                  <Input
-                     type="password"
-                     placeholder="Password"
-                     value={password}
-                     onChange={e => setPassword(e.target.value)}
-                  /><br/><br/>
-               </Column>
-            </Row>
-            <Button type="submit">Login</Button>
-         </Form>
-      </Flex>
+            
+         </Flex> 
+      </>
    )
 }

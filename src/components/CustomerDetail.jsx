@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import Button from './Button';
-import Flex from './Flex';
 import Heading1 from './Heading1';
 import Input from './Input';
 import Paragragh from './Paragragh';
-import Row from './Row';
-import Column from "./Column";
 import Label from "./Label";
 
 export default function CustomerDetail(props) {
@@ -20,16 +18,6 @@ export default function CustomerDetail(props) {
    const [email, setEmail] = useState("");
    const [phoneNumber, setPhoneNumber] = useState("");
    const navigate = useNavigate();
-   
-
-   function renderInput(type, placeholder, value, setValue) {
-      return <Input
-         type={type}
-         placeholder={placeholder}
-         value={value}
-         onChange={(e) => { setValue(e.target.value) }}
-      />
-   }
 
    useEffect(() => {
       function fetchData() {
@@ -154,80 +142,70 @@ export default function CustomerDetail(props) {
                <Paragragh margin><strong>Website:</strong> {customerDetail.website}</Paragragh>
                <Paragragh margin><strong>Email:</strong> {customerDetail.email}</Paragragh>
                <Paragragh margin><strong>Phone number:</strong> {customerDetail.phoneNumber}</Paragragh>
-               <Flex margin>
+               <>
                   <Button onClick={() => handleOnSelect(customerDetail.id)}>Update information</Button>
                   <Button onClick={() => handleOnDelete(customerDetail.id)}>Delete customer</Button>
-               </Flex>
+               </>
             </>
          ) : "Not found"}
 
          <form onSubmit= {handleOnSubmit}>
-            <Row>
-               <Column col="4">
-                  <Label htmlFor="name">Name: </Label>
-               </Column>
-               <Column col="8">
-                  {renderInput("text", "Name", name, setName)} <br />
-               </Column>
-            </Row>
-            <Row>
-               <Column col="4">
-                  <Label htmlFor="organisationNr">Organisation Number: </Label>
-               </Column>
-               <Column col="8">
-                  {renderInput("text", "Organisation Number", organisationNr, setOrganisationNr)} <br />
-               </Column>
-            </Row>
-            <Row>
-               <Column col="4">
-                  <Label htmlFor="vatNr">VAT number: </Label>
-               </Column>
-               <Column col="8">
-                  {renderInput("text", "SExxxxxxxxxx", vatNr, setVatNr)} <br />
-               </Column>
-            </Row>
-            <Row>
-               <Column col="4">
-                  <Label htmlFor="reference">Reference: </Label>
-               </Column>
-               <Column col="8">
-                  {renderInput("text", "Reference", reference, setReference)} <br />
-               </Column>
-            </Row>
-            <Row>
-               <Column col="4">
-                  <Label htmlFor="paymentTerm">Payment Term: </Label>
-               </Column>
-               <Column col="8">
-                  {renderInput("number", "xx", paymentTerm, setPaymentTerm)} <br />
-               </Column>
-            </Row>
-            <Row>
-               <Column col="4">
-                  <Label htmlFor="website">Website: </Label>
-               </Column>
-               <Column col="8">
-                  {renderInput("text", "exempel.com", website, setWebsite)} <br />
-               </Column>
-            </Row>
-            <Row>
-               <Column col="4">
-                  <Label htmlFor="email">Email: </Label>
-               </Column>
-               <Column col="8">
-                  {renderInput("text", "exempel@exempel.com", email, setEmail)} <br />
-               </Column>
-            </Row>
-            <Row>
-               <Column col="4">
-                  <Label htmlFor="phoneNumber">Phone Number: </Label>
-               </Column>
-               <Column col="8">
-                  {renderInput("text", "077 777 77 77", phoneNumber, setPhoneNumber)}
-                  <br /><br />
-               </Column>
-            </Row>
-            
+            <Label htmlFor="name">Name: </Label>
+            <Input
+               type="text"
+               placeholder="Name"
+               value={name}
+               setValue={setName}
+            /><br />
+            <Label htmlFor="organisationNr">Organisation Number: </Label>
+            <Input
+               type="text"
+               placeholder="Organisation Number"
+               value={organisationNr}
+               setValue={setOrganisationNr}
+            /><br />
+            <Label htmlFor="vatNr">VAT number: </Label>
+            <Input
+               type="text"
+               placeholder="SExxxxxxxxxx"
+               value={vatNr}
+               setValue={setVatNr}
+            /><br />
+            <Label htmlFor="reference">Reference: </Label>
+            <Input
+               type="text"
+               placeholder="Reference"
+               value={reference}
+               setValue={setReference}
+            /><br />
+            <Label htmlFor="paymentTerm">Payment Term: </Label>
+            <Input
+               type="number"
+               placeholder="Number of days"
+               value={paymentTerm}
+               setValue={setPaymentTerm}
+            /><br />
+            <Label htmlFor="website">Website: </Label>
+            <Input
+               type="text"
+               placeholder="exempel.com"
+               value={website}
+               setValue={setWebsite}
+            /><br />
+            <Label htmlFor="email">Email: </Label>
+            <Input
+               type="text"
+               placeholder="exempel@exempel.com"
+               value={email}
+               setValue={setEmail}
+            /><br />
+            <Label htmlFor="phoneNumber">Phone Number: </Label>
+            <Input
+               type="text"
+               placeholder="077 777 77 77"
+               value={phoneNumber}
+               setValue={setPhoneNumber}
+            /><br />
             <Button type="submit">Update Customer</Button>
          </form>
       </div>

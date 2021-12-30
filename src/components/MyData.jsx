@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useCallback } from 'react';
 
-import LinkStyled from './LinkStyled';
 import { MyDataContext } from '../App';
 import Paragragh from '../components/Paragragh';
 import BackToHomePage from './BackToHomePage';
+import Link from './Link';
 
 export default function MyData() {
    const { myData, setMyData } = useContext(MyDataContext);
@@ -36,9 +36,8 @@ export default function MyData() {
                   Your email is <strong>{myData.email}</strong>
                </Paragragh>
             </>
-            
          }
-         <LinkStyled href="/" border="1px solid #000" borderRadius="10px" padding margin>Log out</LinkStyled>
+         <Link href="/">Log out</Link>
       </div>
    )
 }

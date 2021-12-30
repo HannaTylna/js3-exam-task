@@ -12,9 +12,8 @@ const Global = createGlobalStyle`
       padding: 0;
       box-sizing: border-box;
       background: #FFEFD5;
-      font-family: "Times New Roman", Times, serif;
    }
-`
+`;
 
 ReactDOM.render(
    <React.StrictMode>

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Button from '../components/Button';
-import Flex from '../components/Flex';
 import Form from '../components/Form';
 import Heading1 from '../components/Heading1';
 import Input from '../components/Input';
 import Label from '../components/Label';
 import Paragragh from '../components/Paragragh';
+import Link from '../components/Link';
 
 
 
@@ -46,7 +46,7 @@ export default function UserCreatePage() {
    
 
    return (
-      <Flex>
+      <>
          <Form onSubmit={handleOnSubmit}>
             <Heading1>Registration</Heading1>
             <Label htmlFor="firstName">First Name</Label>
@@ -87,9 +87,9 @@ export default function UserCreatePage() {
             <Button type="submit">Sign up</Button>
          </Form>
          <Paragragh>If you already have login information, click
-            <Link to="/"> here</Link>
+            <Link href="/"> here</Link>
          </Paragragh>
-      </Flex>
+      </>
       
    )
 }

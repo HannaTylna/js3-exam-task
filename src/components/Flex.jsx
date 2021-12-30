@@ -1,15 +1,24 @@
-import React from "react";
-import styled, {css} from "styled-components"
+import React from 'react';
+import styled, {css} from 'styled-components';
 
 const StyledFlex = styled.div`
 display: flex;
-flex-direction: ${props => props.direction || "row"};
+flex-direction: row;
 align-items: ${props => props.align || "stretch"};
 justify-content: ${props => props.justify || "stretch"};
-${props => props.margin && css`margin: 10px 10px;`}
-${props => props.padding && css`padding: 20px 20px;`}
-`
-
+margin-top: ${props => props.marginTop};
+padding: ${props => props.padding};
+`;
+const StyledFlexColumn = styled(StyledFlex)`
+flex-direction: column;
+`;
 export default function Flex(props) {
-   return <StyledFlex {...props}>{props.children}</StyledFlex>
-};
+   return (
+      <>
+         {
+            props.col ? <StyledFlexColumn {...props}>{props.children}</StyledFlexColumn>
+            : <StyledFlex {...props}>{props.children}</StyledFlex>
+         }
+      </>
+   )
+}

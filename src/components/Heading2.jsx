@@ -7,6 +7,9 @@ margin: ${props => props.margin || "10px auto"};
 text-align: ${props => props.textAlign || "center"};
 `;
 
+
 export default function Heading2(props) {
-   return <StyledHeading2 {...props}/>
+   return (
+      <StyledHeading2 {...props}>{props.children}</StyledHeading2>
+   )
 }
