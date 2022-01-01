@@ -6,6 +6,9 @@ padding: ${props => props.padding || "5px"};
 border-radius: ${props => props.borderRadius || "10px"};
 border: ${props => props.border || "1px solid #000"};
 background: #D3D3D3;
+&:focus{
+   background: #fff;
+}
 `;
 
 const StyledSelect = styled.select`

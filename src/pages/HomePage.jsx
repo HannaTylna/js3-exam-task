@@ -6,7 +6,6 @@ import Heading2 from "../components/Heading2";
 import MyData from "../components/MyData";
 import Link from "../components/Link";
 import Column from "../components/Column";
-import Row from "../components/Row";
 import Flex from "../components/Flex";
 import Paragragh from "../components/Paragragh";
 
@@ -45,8 +44,8 @@ export default function HomePage() {
                <Column width="40%" col="3" padding="15px" textAlign="center" margin="20px auto 20px auto" >
                   <MyData />
                </Column>
-               <Column col="8" padding="15px" margin=" 20px auto 20px auto" borderRadius="20px" boxShadow="5px 5px 5px 5px #262626">
-                  <Heading2>Customers</Heading2>
+               <Column width="100%" col="8" padding="15px" margin=" 20px auto 20px auto" >
+                  <Heading2 margin="0px auto 30px auto">Customers</Heading2>
                   <Flex marginBottom="20px">
                      <Column col="3" textAlign="center"><strong>NAME</strong></Column>
                      <Column col="3" textAlign="center"><strong>EMAIL</strong></Column>
