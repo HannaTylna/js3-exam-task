@@ -41,39 +41,37 @@ export default function HomePage() {
          <Column col="12">
             <Heading1 center boxShadow="5px 5px 5px 5px #262626" width="50%" padding="5px">Home Page</Heading1>
          </Column>
-         <Flex>
-            <Row>
-               <Column col="3" width="60%" padding="15px" textAlign="center" margin="20px" >
+         <Flex display="block">
+               <Column width="40%" col="3" padding="15px" textAlign="center" margin="20px auto 20px auto" >
                   <MyData />
                </Column>
-               <Column  col="8" padding="15px" margin="20px" borderRadius="20px" boxShadow="5px 5px 5px 5px #262626">
+               <Column col="8" padding="15px" margin=" 20px auto 20px auto" borderRadius="20px" boxShadow="5px 5px 5px 5px #262626">
                   <Heading2>Customers</Heading2>
                   <Flex marginBottom="20px">
-                     <Column><strong>NAME</strong></Column>
-                     <Column><strong>EMAIL</strong></Column>
-                     <Column><strong>ID</strong></Column>
-                     <Column></Column>
+                     <Column col="3" textAlign="center"><strong>NAME</strong></Column>
+                     <Column col="3" textAlign="center"><strong>EMAIL</strong></Column>
+                     <Column col="2" textAlign="center"><strong>ID</strong></Column>
+                     <Column col="2" textAlign="center"></Column>
                   </Flex>
                   {customerList && customerList.map((customer, index) => {
                      return (
                         <Flex key={index}>
-                           <Column>
+                           <Column col="3" textAlign="center" margin="0px 0px 10px 0px">
                               <h3>{customer.name}</h3>
                            </Column>
-                           <Column>
+                           <Column col="3" textAlign="center">
                               <Paragragh>{customer.email}</Paragragh>
                            </Column>
-                           <Column>
+                           <Column col="2" textAlign="center">
                               <Paragragh>{customer.id}</Paragragh>
                            </Column>
-                           <Column>
+                           <Column col="2" textAlign="center">
                               <Link href={`/home/${customer.id}`}><strong>...</strong></Link>
                            </Column>
                         </Flex>
                      )
                   })}
                </Column>
-            </Row>
          </Flex>   
          <CustomerCreate onSuccess={fetchData} />
       </>

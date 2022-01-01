@@ -9,6 +9,10 @@ justify-content: ${props => props.justify || "stretch"};
 margin-top: ${props => props.marginTop};
 margin-bottom: ${props => props.marginBottom};
 padding: ${props => props.padding};
+@media (max-width: 768px){
+   display: ${props => props.display};
+   text-align: center;
+};
 `;
 const StyledFlexColumn = styled(StyledFlex)`
 flex-direction: column;

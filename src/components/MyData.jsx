@@ -29,10 +29,9 @@ export default function MyData() {
       <div>
          {myData &&
             <>
-               <Paragragh marginBottom="20px">
-                  Hello, <strong>{myData.firstName} {myData.lastName}</strong>.<br />
-                  Your email is <strong>{myData.email}</strong>
-               </Paragragh>
+            <Paragragh textAlign="center" marginBottom="20px" >
+               Hello, <strong>{myData.firstName} {myData.lastName}</strong>. Your email is <strong>{myData.email}</strong>
+            </Paragragh>
             </>
          }
          <Link href="/" button>Log out</Link>
