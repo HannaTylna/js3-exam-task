@@ -44,7 +44,7 @@ export default function LoginPage() {
             <Row>
                <Column col="5">
                   <Heading1 center>Welcome to Registration24!<br/><br/>Please, enter your data!</Heading1>
-                  <Paragragh marginBottom="50px" textAlign="center">If you want to register, please click
+                  <Paragragh marginBottom="50px" textAlign="center">If you want to register, please click  
                      <Link href="/auth/users/"> here</Link>
                   </Paragragh>
                </Column>
@@ -54,7 +54,7 @@ export default function LoginPage() {
                         <Heading2>Login</Heading2>
                      </Row>
                      <Row flex>
-                        <Column col="4">
+                        <Column col="4" color>
                            <Label htmlFor="email">Email: </Label>
                         </Column>
                         <Column col="8">

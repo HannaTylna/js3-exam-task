@@ -4,6 +4,7 @@ import styled from 'styled-components';
 const StyledContainer = styled.div`
 font-family: "Times New Roman", Times, serif;
 margin: 0px auto;
+
 padding: 0px 10px;
 
 @media (max-width: 576px){

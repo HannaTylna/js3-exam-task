@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useCallback } from 'react';
 
 import { MyDataContext } from '../App';
 import Paragragh from '../components/Paragragh';
-import BackToHomePage from './BackToHomePage';
 import Link from './Link';
 
 export default function MyData() {
@@ -30,14 +29,13 @@ export default function MyData() {
       <div>
          {myData &&
             <>
-               <BackToHomePage />
-               <Paragragh margin>
+               <Paragragh marginBottom="20px">
                   Hello, <strong>{myData.firstName} {myData.lastName}</strong>.<br />
                   Your email is <strong>{myData.email}</strong>
                </Paragragh>
             </>
          }
-         <Link href="/">Log out</Link>
+         <Link href="/" button>Log out</Link>
       </div>
    )
 }

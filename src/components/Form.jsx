@@ -8,6 +8,7 @@ border-radius: ${props => props.borderRadius || "20px"};
 box-shadow: ${props => props.boxShadow || "none"};
 ${props => props.padding && css`padding: 20px 20px;`};
 ${ props => props.margin && css`margin: 20px auto;` };
+background: #499edf;
 @media (max-width: 992px){
    width: 70%;
 };

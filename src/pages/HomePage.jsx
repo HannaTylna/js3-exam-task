@@ -5,6 +5,10 @@ import Heading1 from "../components/Heading1";
 import Heading2 from "../components/Heading2";
 import MyData from "../components/MyData";
 import Link from "../components/Link";
+import Column from "../components/Column";
+import Row from "../components/Row";
+import Flex from "../components/Flex";
+import Paragragh from "../components/Paragragh";
 
 
 export default function HomePage() {
@@ -33,30 +37,45 @@ export default function HomePage() {
 
    
    return (
-      <div>
-         <Heading1 border="2px double #000" width="50%" padding="5px">Home Page</Heading1>
-         
-               <MyData />
-               <Heading2>Customers</Heading2>
-               <div>
-                  <div></div>
-                  <div><strong>Email</strong></div>
-                  <div><strong>ID</strong></div>
-                  <div></div>
-               </div>
-               
+      <>
+         <Column col="12">
+            <Heading1 center boxShadow="5px 5px 5px 5px #262626" width="50%" padding="5px">Home Page</Heading1>
+         </Column>
+         <Flex>
+            <Row>
+               <Column col="3" width="60%" padding="15px" textAlign="center" margin="20px" >
+                  <MyData />
+               </Column>
+               <Column  col="8" padding="15px" margin="20px" borderRadius="20px" boxShadow="5px 5px 5px 5px #262626">
+                  <Heading2>Customers</Heading2>
+                  <Flex marginBottom="20px">
+                     <Column><strong>NAME</strong></Column>
+                     <Column><strong>EMAIL</strong></Column>
+                     <Column><strong>ID</strong></Column>
+                     <Column></Column>
+                  </Flex>
                   {customerList && customerList.map((customer, index) => {
                      return (
-                        <div key={index}>
-                           <h3>{customer.name}</h3>
-                           <p>{customer.email}</p>
-                           <p>{customer.id}</p>
-                           <Link href={`/home/${customer.id}`}><strong>...</strong></Link>
-                        </div>
+                        <Flex key={index}>
+                           <Column>
+                              <h3>{customer.name}</h3>
+                           </Column>
+                           <Column>
+                              <Paragragh>{customer.email}</Paragragh>
+                           </Column>
+                           <Column>
+                              <Paragragh>{customer.id}</Paragragh>
+                           </Column>
+                           <Column>
+                              <Link href={`/home/${customer.id}`}><strong>...</strong></Link>
+                           </Column>
+                        </Flex>
                      )
                   })}
-               <CustomerCreate onSuccess={fetchData} />
-               {/*<Button onClick={fetchData}>Refresh</Button>*/}
-      </div>
+               </Column>
+            </Row>
+         </Flex>   
+         <CustomerCreate onSuccess={fetchData} />
+      </>
    )
 }

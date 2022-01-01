@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../components/Button';
 import Form from '../components/Form';
-import Heading1 from '../components/Heading1';
 import Input from '../components/Input';
 import Label from '../components/Label';
 import Paragragh from '../components/Paragragh';
 import Link from '../components/Link';
+import Heading2 from '../components/Heading2';
+import Row from '../components/Row';
+import Column from '../components/Column';
 
 
 
@@ -16,6 +18,7 @@ export default function UserCreatePage() {
    const [email, setEmail] = useState("");
    const [password, setPassword] = useState("");
    const [organisationName, setOrganisationName] = useState("");
+   const [organisationKind, setOrganisationKind] = useState();
    const navigate = useNavigate();
 
    function handleOnSubmit(e) {
@@ -27,7 +30,7 @@ export default function UserCreatePage() {
          email,
          password,
          organisationName,
-         organisationKind: "1",
+         organisationKind,
       }
       
       fetch(url, {
@@ -47,46 +50,96 @@ export default function UserCreatePage() {
 
    return (
       <>
-         <Form onSubmit={handleOnSubmit}>
-            <Heading1>Registration</Heading1>
-            <Label htmlFor="firstName">First Name</Label>
-            <Input
-               type="text"
-               value={firstName}
-               placeholder="First Name"
-               onChange={(e) => setFirstName(e.target.value)}
-            /><br/>
-            <Label htmlFor="lastName">Last Name</Label>
-            <Input
-               type="text"
-               value={lastName}
-               placeholder="Last Name"
-               onChange={(e) => setLastName(e.target.value)}
-            /><br/>
-            <Label htmlFor="email">Email</Label>
-            <Input
-               type="text"
-               value={email}
-               placeholder="Email"
-               onChange={(e) => setEmail(e.target.value)}
-            /><br/>
-            <Label htmlFor="password">Password</Label>
-            <Input
-               type="password"
-               value={password}
-               placeholder="Password"
-               onChange={(e) => setPassword(e.target.value)}
-            /><br/>
-            <Label htmlFor="organisationName">Organisation Name</Label>
-            <Input
-               type="text"
-               value={organisationName}
-               placeholder="Organisation Name"
-               onChange={(e) => setOrganisationName(e.target.value)}
-            /><br/><br/>
-            <Button type="submit">Sign up</Button>
+         <Form margin padding boxShadow="5px 5px 5px 5px #262626"  onSubmit={handleOnSubmit}>
+            <Row>
+               <Heading2>Registration</Heading2>
+            </Row>
+            <Row flex>
+               <Column col="4">
+                  <Label htmlFor="firstName">First Name </Label>
+               </Column>
+               <Column col="8">
+                  <Input
+                     type="text"
+                     placeholder="First Name"
+                     value={firstName}
+                     setValue={setFirstName}
+                     required="required"
+                  /><br/>
+               </Column>
+            </Row>
+            <Row flex>
+               <Column col="4">
+                  <Label htmlFor="lastName">Last Name </Label>
+               </Column>
+               <Column col="8">
+                  <Input
+                     type="text"
+                     placeholder="Last Name"
+                     value={lastName}
+                     setValue={setLastName}
+                     required="required"
+                  /><br/>
+               </Column>
+            </Row>
+            <Row flex>
+               <Column col="4">
+                  <Label htmlFor="email">Email: </Label>
+               </Column>
+               <Column col="8">
+                  <Input
+                     type="text"
+                     placeholder="Email"
+                     value={email}
+                     setValue={setEmail}
+                     required="required"
+                  /><br/>
+               </Column>
+            </Row>
+            <Row flex>
+               <Column col="4">
+                  <Label htmlFor="password">Password: </Label>
+               </Column>
+               <Column col="8">
+                  <Input
+                     type="password"
+                     placeholder="Password"
+                     value={password}
+                     setValue={setPassword}
+                     required="required"
+                  /><br/>
+               </Column>
+            </Row>
+            <Row flex>
+               <Column col="4">
+                  <Label htmlFor="organisationName">Organisation Name </Label>
+               </Column>
+               <Column col="8">
+                  <Input
+                     type="text"
+                     placeholder="Organisation Name"
+                     value={organisationName}
+                     setValue={setOrganisationName}
+                     required="required"
+                  /><br/>
+               </Column>
+            </Row>
+            <Row>
+               <Column col="4">
+                  <Label htmlFor="organisationKind">Organisation Kind</Label>
+               </Column>
+               <Column col="8">
+                  <Input select id="organisationKind" value={organisationKind} setValue={setOrganisationKind} required="required">
+                     <option value=""></option>
+                     <option value="0">0</option>
+                     <option value="1">1</option>
+                     <option value="2">2</option>
+                  </Input>
+               </Column>
+            </Row>
+            <Button type="submit">Sign in</Button>
          </Form>
-         <Paragragh>If you already have login information, click
+         <Paragragh textAlign="center">If you already have login information, click  
             <Link href="/"> here</Link>
          </Paragragh>
       </>
