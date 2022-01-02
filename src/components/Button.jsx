@@ -21,6 +21,6 @@ border-radius: 10px;
 
 export default function Button(props) {
    return (
-      <StyledButton>{props.children}</StyledButton>
+      <StyledButton {...props}>{props.children}</StyledButton>
    )
 }

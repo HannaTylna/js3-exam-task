@@ -6,6 +6,12 @@ import Heading1 from './Heading1';
 import Input from './Input';
 import Paragragh from './Paragragh';
 import Label from "./Label";
+import BackToHomePage from '../components/BackToHomePage';
+import Column from '../components/Column';
+import MyData from '../components/MyData';
+import Form from './Form';
+import Row from './Row';
+import Heading2 from './Heading2';
 
 export default function CustomerDetail(props) {
    const [customerDetail, setCustomerDetail] = useState({});
@@ -90,7 +96,7 @@ export default function CustomerDetail(props) {
             "Wrong format! You need to write SExxxxxxxxxx."
          )
          return false;
-      } else
+      } 
       
       if (!regexEmail.test(email)) {
          alert(
@@ -131,9 +137,13 @@ export default function CustomerDetail(props) {
 
    return (
       <div>
+         <Column width="40%" col="3" padding="15px" textAlign="center" margin="20px auto 20px auto" >
+            <BackToHomePage />
+            <MyData />
+         </Column>
          {customerDetail ? (
             <>
-               <Heading1 border="2px double #000">You are viewing customer with id {customerDetail.id}</Heading1>
+               <Heading1>You are viewing customer with id {customerDetail.id}</Heading1>
                <Paragragh margin><strong>Name:</strong> {customerDetail.name}</Paragragh>
                <Paragragh margin><strong>Organisation number:</strong> {customerDetail.organisationNr}</Paragragh>
                <Paragragh margin><strong>VAT number:</strong> {customerDetail.vatNr}</Paragragh>
@@ -149,65 +159,124 @@ export default function CustomerDetail(props) {
             </>
          ) : "Not found"}
 
-         <form onSubmit= {handleOnSubmit}>
-            <Label htmlFor="name">Name: </Label>
-            <Input
-               type="text"
-               placeholder="Name"
-               value={name}
-               setValue={setName}
-            /><br />
-            <Label htmlFor="organisationNr">Organisation Number: </Label>
-            <Input
-               type="text"
-               placeholder="Organisation Number"
-               value={organisationNr}
-               setValue={setOrganisationNr}
-            /><br />
-            <Label htmlFor="vatNr">VAT number: </Label>
-            <Input
-               type="text"
-               placeholder="SExxxxxxxxxx"
-               value={vatNr}
-               setValue={setVatNr}
-            /><br />
-            <Label htmlFor="reference">Reference: </Label>
-            <Input
-               type="text"
-               placeholder="Reference"
-               value={reference}
-               setValue={setReference}
-            /><br />
-            <Label htmlFor="paymentTerm">Payment Term: </Label>
-            <Input
-               type="number"
-               placeholder="Number of days"
-               value={paymentTerm}
-               setValue={setPaymentTerm}
-            /><br />
-            <Label htmlFor="website">Website: </Label>
-            <Input
-               type="text"
-               placeholder="exempel.com"
-               value={website}
-               setValue={setWebsite}
-            /><br />
-            <Label htmlFor="email">Email: </Label>
-            <Input
-               type="text"
-               placeholder="exempel@exempel.com"
-               value={email}
-               setValue={setEmail}
-            /><br />
-            <Label htmlFor="phoneNumber">Phone Number: </Label>
-            <Input
-               type="text"
-               placeholder="077 777 77 77"
-               value={phoneNumber}
-               setValue={setPhoneNumber}
-            /><br />
-            <Button type="submit">Update Customer</Button>
-         </form>
+         <Form margin padding boxShadow="5px 5px 5px 5px #262626" onSubmit={handleOnSubmit}>
+            <Row>
+               <Heading2>Update information</Heading2>
+            </Row>
+            <Row flex>
+               <Column col="4">
+                  <Label htmlFor="name">Name </Label>
+               </Column>
+               <Column col="8">
+                  <Input
+                     type="text"
+                     placeholder="Name"
+                     value={name}
+                     setValue={setName}
+                     required="required"
+                  /><br/>
+               </Column>
+            </Row>
+            <Row flex>
+               <Column col="4">
+                  <Label htmlFor="organisationNr">Organisation Number </Label>
+               </Column>
+               <Column col="8">
+                  <Input
+                     type="text"
+                     placeholder="Organisation Number"
+                     value={organisationNr}
+                     setValue={setOrganisationNr}
+                     required="required"
+                  /><br/>
+               </Column>
+            </Row>
+            <Row flex>
+               <Column col="4">
+                  <Label htmlFor="vatNr">VAT number </Label>
+               </Column>
+               <Column col="8">
+                  <Input
+                     type="text"
+                     placeholder="SExxxxxxxxxx"
+                     value={vatNr}
+                     setValue={setVatNr}
+                     required="required"
+                  /><br/>
+               </Column>
+            </Row>
+            <Row flex>
+               <Column col="4">
+                  <Label htmlFor="reference">Reference </Label>
+               </Column>
+               <Column col="8">
+                  <Input
+                     type="text"
+                     placeholder="Reference"
+                     value={reference}
+                     setValue={setReference}
+                     required="required"
+                  /><br/>
+               </Column>
+            </Row>
+            <Row flex>
+               <Column col="4">
+                  <Label htmlFor="paymentTerm">Payment Term </Label>
+               </Column>
+               <Column col="8">
+                  <Input
+                     type="number"
+                     placeholder="Number of days"
+                     value={paymentTerm}
+                     setValue={setPaymentTerm}
+                     required="required"
+                  /><br/>
+               </Column>
+            </Row>
+            <Row flex>
+               <Column col="4">
+                  <Label htmlFor="website">Website </Label>
+               </Column>
+               <Column col="8">
+                  <Input
+                     type="text"
+                     placeholder="Website"
+                     value={website}
+                     setValue={setWebsite}
+                     required="required"
+                  /><br/>
+               </Column>
+            </Row>
+            <Row flex>
+               <Column col="4">
+                  <Label htmlFor="email">Email </Label>
+               </Column>
+               <Column col="8">
+                  <Input
+                     type="text"
+                     placeholder="exempel@exempel.com"
+                     value={email}
+                     setValue={setEmail}
+                     required="required"
+                  /><br/>
+               </Column>
+            </Row>
+            <Row flex>
+               <Column col="4">
+                  <Label htmlFor="phoneNumber">Phone Number </Label>
+               </Column>
+               <Column col="8">
+                  <Input
+                     type="text"
+                     placeholder="077 777 77 77"
+                     value={phoneNumber}
+                     setValue={setPhoneNumber}
+                     required="required"
+                  /><br/>
+               </Column>
+            </Row>
+            <Button type="submit">Update</Button>
+         </Form>
       </div>
    )
 }
