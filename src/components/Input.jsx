@@ -11,27 +11,15 @@ background: #D3D3D3;
 }
 `;
 
-const StyledSelect = styled.select`
-padding: ${props => props.padding || "3px"};
-border-radius: ${props => props.borderRadius || "10px"};
-border: ${props => props.border || "1px solid #000"};
-background: #D3D3D3;
-`;
-
-export default function Input({props , select, type, placeholder, value, setValue, required}) {
+export default function Input({props , type, placeholder, value, setValue, required}) {
    return (
-      <>
-         {select ? <StyledSelect value={value} onChange={e => setValue(e.target.value)} required={required}>{props.children}</StyledSelect>
-            : 
-         <StyledInput
-            type={type}
-            placeholder={placeholder}
-            value={value}
-            onChange={e => setValue(e.target.value)}
-            required={required}
-         />
-         }
-      </>
-      
+      <StyledInput
+         {...props}
+         type={type}
+         placeholder={placeholder}
+         value={value}
+         onChange={e => setValue(e.target.value)}
+         required={required}
+      />
    )
 }

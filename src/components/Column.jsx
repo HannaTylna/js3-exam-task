@@ -9,6 +9,7 @@ margin: ${props => props.margin};
 padding: ${props => props.padding};
 border-radius: ${props => props.borderRadius};
 box-shadow: ${props => props.boxShadow};
+border: ${props => props.border};
 
 @media (max-width: 992px){
    width: ${props => props.width}

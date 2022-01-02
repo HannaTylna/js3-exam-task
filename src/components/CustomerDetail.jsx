@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Button from './Button';
 import Heading1 from './Heading1';
 import Input from './Input';
-import Paragragh from './Paragragh';
+import Paragragh from '../components/Paragragh';
 import Label from "./Label";
 import BackToHomePage from '../components/BackToHomePage';
 import Column from '../components/Column';
@@ -12,6 +12,7 @@ import MyData from '../components/MyData';
 import Form from './Form';
 import Row from './Row';
 import Heading2 from './Heading2';
+import Flex from './Flex';
 
 export default function CustomerDetail(props) {
    const [customerDetail, setCustomerDetail] = useState({});
@@ -137,25 +138,87 @@ export default function CustomerDetail(props) {
 
    return (
       <div>
-         <Column width="40%" col="3" padding="15px" textAlign="center" margin="20px auto 20px auto" >
-            <BackToHomePage />
-            <MyData />
-         </Column>
          {customerDetail ? (
             <>
-               <Heading1>You are viewing customer with id {customerDetail.id}</Heading1>
-               <Paragragh margin><strong>Name:</strong> {customerDetail.name}</Paragragh>
-               <Paragragh margin><strong>Organisation number:</strong> {customerDetail.organisationNr}</Paragragh>
-               <Paragragh margin><strong>VAT number:</strong> {customerDetail.vatNr}</Paragragh>
-               <Paragragh margin><strong>Reference:</strong> {customerDetail.reference}</Paragragh>
-               <Paragragh margin><strong>Payment Term:</strong> {customerDetail.paymentTerm} days</Paragragh>
-               <Paragragh margin><strong>Website:</strong> {customerDetail.website}</Paragragh>
-               <Paragragh margin><strong>Email:</strong> {customerDetail.email}</Paragragh>
-               <Paragragh margin><strong>Phone number:</strong> {customerDetail.phoneNumber}</Paragragh>
-               <>
-                  <Button onClick={() => handleOnSelect(customerDetail.id)}>Update information</Button>
-                  <Button onClick={() => handleOnDelete(customerDetail.id)}>Delete customer</Button>
-               </>
+               <Flex display="block">
+                  <Column width="40%" col="3" padding="15px" textAlign="center" margin="20px auto 20px auto" >
+                     <BackToHomePage />
+                     <MyData />
+                  </Column>
+                  <Column col="9">
+                     <Heading1 center boxShadow="5px 5px 5px 5px #262626" width="90%" padding="5px" >You are viewing customer with id {customerDetail.id}</Heading1>
+                  </Column>
+               </Flex>
+               <Column col="5" margin=" 20px auto 20px auto" border="3px double #262626" padding="15px">
+                  <Row flex>
+                     <Column col="5">
+                        <Paragragh textTransform="uppercase" fontWeight="bold">Name:</Paragragh>
+                     </Column>
+                     <Column col="3">
+                        <Paragragh>{customerDetail.name}</Paragragh>
+                     </Column>
+                  </Row>
+                  <Row flex>
+                     <Column col="5">
+                        <Paragragh textTransform="uppercase" fontWeight="bold">Organisation number:</Paragragh>
+                     </Column>
+                     <Column col="3">
+                        <Paragragh>{customerDetail.organisationNr}</Paragragh>
+                     </Column>
+                  </Row>
+                  <Row flex>
+                     <Column col="5">
+                        <Paragragh textTransform="uppercase" fontWeight="bold">VAT number:</Paragragh>
+                     </Column>
+                     <Column col="3">
+                        <Paragragh>{customerDetail.vatNr}</Paragragh>
+                     </Column>
+                  </Row>
+                  <Row flex>
+                     <Column col="5">
+                        <Paragragh textTransform="uppercase" fontWeight="bold">Reference:</Paragragh>
+                     </Column>
+                     <Column col="3">
+                        <Paragragh>{customerDetail.reference}</Paragragh>
+                     </Column>
+                  </Row>
+                  <Row flex>
+                     <Column col="5">
+                        <Paragragh textTransform="uppercase" fontWeight="bold">Payment Term:</Paragragh>
+                     </Column>
+                     <Column col="3">
+                        <Paragragh>{customerDetail.paymentTerm} days</Paragragh>
+                     </Column>
+                  </Row>
+                  <Row flex>
+                     <Column col="5">
+                        <Paragragh textTransform="uppercase" fontWeight="bold">Website:</Paragragh>
+                     </Column>
+                     <Column col="3">
+                        <Paragragh>{customerDetail.website}</Paragragh>
+                     </Column>
+                  </Row>
+                  <Row flex>
+                     <Column col="5">
+                        <Paragragh textTransform="uppercase" fontWeight="bold">Email:</Paragragh>
+                     </Column>
+                     <Column col="3">
+                        <Paragragh>{customerDetail.email}</Paragragh>
+                     </Column>
+                  </Row>
+                  <Row flex>
+                     <Column col="5">
+                        <Paragragh textTransform="uppercase" fontWeight="bold">Phone number:</Paragragh>
+                     </Column>
+                     <Column col="3">
+                        <Paragragh>{customerDetail.phoneNumber}</Paragragh>
+                     </Column>
+                  </Row>
+                  <Flex>
+                     <Button onClick={() => handleOnSelect(customerDetail.id)}>Update information</Button>
+                     <Button onClick={() => handleOnDelete(customerDetail.id)}>Delete customer</Button>
+                  </Flex>
+               </Column>
             </>
          ) : "Not found"}
 

@@ -5,7 +5,7 @@ const StyledLink = styled.a`
 text-decoration: none;
 font-weight: bold;
 font-size: 16px;
-color: #000;
+color: ${props => props.color || "#000"};
 &:hover{
    border-bottom: 1px solid #000;
    font-size: 18px;

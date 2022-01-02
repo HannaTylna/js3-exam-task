@@ -7,6 +7,7 @@ margin: ${props => props.margin || "10px auto"};
 border: ${props => props.border};
 width: ${props => props.width};
 padding: ${props => props.padding};
+text-transform: ${props => props.textTransform};
 `
 const Heading1Center = styled(StyledHeading1)`
 text-align: ${props => props.textAlign || "center"};

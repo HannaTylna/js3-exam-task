@@ -18,7 +18,7 @@ export default function UserCreatePage() {
    const [email, setEmail] = useState("");
    const [password, setPassword] = useState("");
    const [organisationName, setOrganisationName] = useState("");
-   const [organisationKind, setOrganisationKind] = useState();
+   const [organisationKind, setOrganisationKind] = useState("");
    const navigate = useNavigate();
 
    function handleOnSubmit(e) {
@@ -124,17 +124,18 @@ export default function UserCreatePage() {
                   /><br/>
                </Column>
             </Row>
-            <Row>
+            <Row flex>
                <Column col="4">
-                  <Label htmlFor="organisationKind">Organisation Kind</Label>
+                  <Label htmlFor="organisationKind">Organisation Kind (0-2)</Label>
                </Column>
                <Column col="8">
-                  <Input select id="organisationKind" value={organisationKind} setValue={setOrganisationKind} required="required">
-                     <option value=""></option>
-                     <option value="0">0</option>
-                     <option value="1">1</option>
-                     <option value="2">2</option>
-                  </Input>
+                  <Input
+                     type="number"
+                     placeholder="Organisation Kind"
+                     value={organisationKind}
+                     setValue={setOrganisationKind}
+                     required="required"
+                  /><br/>
                </Column>
             </Row>
             <Button type="submit">Sign in</Button>

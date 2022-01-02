@@ -37,42 +37,46 @@ export default function HomePage() {
    
    return (
       <>
-         <Column col="12">
-            <Heading1 center boxShadow="5px 5px 5px 5px #262626" width="50%" padding="5px">Home Page</Heading1>
-         </Column>
-         <Flex display="block">
-               <Column width="40%" col="3" padding="15px" textAlign="center" margin="20px auto 20px auto" >
-                  <MyData />
-               </Column>
-               <Column width="100%" col="8" padding="15px" margin=" 20px auto 20px auto" >
-                  <Heading2 margin="0px auto 30px auto">Customers</Heading2>
-                  <Flex marginBottom="20px">
-                     <Column col="3" textAlign="center"><strong>NAME</strong></Column>
-                     <Column col="3" textAlign="center"><strong>EMAIL</strong></Column>
-                     <Column col="2" textAlign="center"><strong>ID</strong></Column>
-                     <Column col="2" textAlign="center"></Column>
-                  </Flex>
-                  {customerList && customerList.map((customer, index) => {
-                     return (
-                        <Flex key={index}>
-                           <Column col="3" textAlign="center" margin="0px 0px 10px 0px">
-                              <h3>{customer.name}</h3>
-                           </Column>
-                           <Column col="3" textAlign="center">
-                              <Paragragh>{customer.email}</Paragragh>
-                           </Column>
-                           <Column col="2" textAlign="center">
-                              <Paragragh>{customer.id}</Paragragh>
-                           </Column>
-                           <Column col="2" textAlign="center">
-                              <Link href={`/home/${customer.id}`}><strong>...</strong></Link>
-                           </Column>
-                        </Flex>
-                     )
-                  })}
-               </Column>
+         <Flex>
+            <Column width="40%" col="3" padding="15px" textAlign="center" margin="20px auto 20px auto" >
+               <MyData />
+            </Column>
+            <Column col="9">
+               <Heading1 center boxShadow="5px 5px 5px 5px #262626" width="50%" padding="5px" textTransform="uppercase">Home Page</Heading1>
+            </Column>
+         </Flex>
+         
+         
+         <Flex display="block" >
+            <Column width="100%" col="8" margin=" 20px auto 20px auto" border="3px double #262626" >
+               <Heading2 margin="10px auto 20px auto">Customers</Heading2>
+               <Flex padding="5px 0px" borderBottom="2px solid #262626" borderTop="2px solid #262626">
+                  <Column col="3" textAlign="center"><strong>NAME</strong></Column>
+                  <Column col="3" textAlign="center"><strong>EMAIL</strong></Column>
+                  <Column col="2" textAlign="center"><strong>ID</strong></Column>
+                  <Column col="2" textAlign="center"></Column>
+               </Flex>
+               {customerList && customerList.map((customer, index) => {
+                  return (
+                     <Flex key={index}>
+                        <Column col="3" textAlign="center" padding="5px 0px">
+                           <h3>{customer.name}</h3>
+                        </Column>
+                        <Column col="3" textAlign="center" padding="5px 0px">
+                           <Paragragh>{customer.email}</Paragragh>
+                        </Column>
+                        <Column col="2" textAlign="center" padding="5px 0px">
+                           <Paragragh>{customer.id}</Paragragh>
+                        </Column>
+                        <Column col="2" textAlign="center">
+                           <Link href={`/home/${customer.id}`} color="#499edf"><strong>...</strong></Link>
+                        </Column>
+                     </Flex>
+                  )
+               })}
+            </Column>
          </Flex>   
-         <CustomerCreate onSuccess={fetchData} />
+         
       </>
    )
 }

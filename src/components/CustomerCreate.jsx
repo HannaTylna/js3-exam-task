@@ -150,7 +150,6 @@ export default function CustomerCreate(props) {
                   <Input
                      type="text"
                      placeholder="Website"
-                     value={website}
                      setValue={setWebsite}
                      required="required"
                   /><br/>
