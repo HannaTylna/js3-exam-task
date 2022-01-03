@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const StyledLink = styled.a`
 text-decoration: none;
-font-weight: bold;
+font-weight: ${props => props.fontWeight || "bold"};
 font-size: 16px;
 color: ${props => props.color || "#000"};
 &:hover{

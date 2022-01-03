@@ -3,8 +3,7 @@ import styled from 'styled-components';
 
 const StyledInput = styled.input`
 padding: ${props => props.padding || "5px"};
-border-radius: ${props => props.borderRadius || "10px"};
-border: ${props => props.border || "1px solid #000"};
+border: ${props => props.border};
 background: #D3D3D3;
 &:focus{
    background: #fff;

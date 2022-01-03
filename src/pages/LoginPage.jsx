@@ -49,9 +49,9 @@ export default function LoginPage() {
                   </Paragragh>
                </Column>
                <Column col="7">
-                  <Form padding boxShadow="5px 5px 5px 5px #262626"  onSubmit={handleOnSubmit}>
+                  <Form onSubmit={handleOnSubmit}>
                      <Row>
-                        <Heading2>Login</Heading2>
+                        <Heading2 color="#fff">Login</Heading2>
                      </Row>
                      <Row flex>
                         <Column col="4" color>

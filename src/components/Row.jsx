@@ -6,6 +6,7 @@ const StyledRow = styled.div`
 display: ${props => props.display || "flex"};
 flex-wrap: ${props => props.flex || "wrap"};
 margin: ${props => props.margin || "0px 0px 10px 0px"};
+
 @media (max-width: 768px){
    display: block;
 };

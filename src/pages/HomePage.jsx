@@ -48,7 +48,7 @@ export default function HomePage() {
          
          
          <Flex display="block" >
-            <Column width="100%" col="8" margin=" 20px auto 20px auto" border="3px double #262626" >
+            <Column width="100%" col="7" margin=" 20px auto 20px auto" border="3px double #262626" >
                <Heading2 margin="10px auto 20px auto">Customers</Heading2>
                <Flex padding="5px 0px" borderBottom="2px solid #262626" borderTop="2px solid #262626">
                   <Column col="3" textAlign="center"><strong>NAME</strong></Column>
@@ -69,11 +69,14 @@ export default function HomePage() {
                            <Paragragh>{customer.id}</Paragragh>
                         </Column>
                         <Column col="2" textAlign="center">
-                           <Link href={`/home/${customer.id}`} color="#499edf"><strong>...</strong></Link>
+                           <Link href={`/home/${customer.id}` } fontWeight="none">&lt;...&gt;</Link>
                         </Column>
                      </Flex>
                   )
                })}
+            </Column>
+            <Column col="5" >
+               <CustomerCreate onSuccess={fetchData} />
             </Column>
          </Flex>   
          

@@ -6,9 +6,9 @@ import Input from '../components/Input';
 import Label from '../components/Label';
 import Paragragh from '../components/Paragragh';
 import Link from '../components/Link';
-import Heading2 from '../components/Heading2';
 import Row from '../components/Row';
 import Column from '../components/Column';
+import Heading2 from '../components/Heading2';
 
 
 
@@ -50,9 +50,9 @@ export default function UserCreatePage() {
 
    return (
       <>
-         <Form margin padding boxShadow="5px 5px 5px 5px #262626"  onSubmit={handleOnSubmit}>
+         <Form margin="20px auto"  onSubmit={handleOnSubmit}>
             <Row>
-               <Heading2>Registration</Heading2>
+               <Heading2 color="#fff">Registration</Heading2>
             </Row>
             <Row flex>
                <Column col="4">

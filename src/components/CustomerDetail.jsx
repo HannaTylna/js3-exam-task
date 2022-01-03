@@ -137,209 +137,171 @@ export default function CustomerDetail(props) {
    }
 
    return (
-      <div>
-         {customerDetail ? (
-            <>
-               <Flex display="block">
-                  <Column width="40%" col="3" padding="15px" textAlign="center" margin="20px auto 20px auto" >
-                     <BackToHomePage />
-                     <MyData />
-                  </Column>
-                  <Column col="9">
-                     <Heading1 center boxShadow="5px 5px 5px 5px #262626" width="90%" padding="5px" >You are viewing customer with id {customerDetail.id}</Heading1>
-                  </Column>
-               </Flex>
-               <Column col="5" margin=" 20px auto 20px auto" border="3px double #262626" padding="15px">
+      <>
+            {customerDetail ? (
+               <>
                   <Row flex>
-                     <Column col="5">
-                        <Paragragh textTransform="uppercase" fontWeight="bold">Name:</Paragragh>
+                     <Column width="40%" col="3" padding="15px" textAlign="center" margin="20px auto 20px auto" >
+                        <BackToHomePage />
+                        <MyData />
                      </Column>
-                     <Column col="3">
-                        <Paragragh>{customerDetail.name}</Paragragh>
+                     <Column col="9">
+                        <Heading1 center boxShadow="5px 5px 5px 5px #262626" width="90%" padding="5px" >You are viewing customer with id {customerDetail.id}</Heading1>
                      </Column>
                   </Row>
                   <Row flex>
-                     <Column col="5">
-                        <Paragragh textTransform="uppercase" fontWeight="bold">Organisation number:</Paragragh>
-                     </Column>
-                     <Column col="3">
-                        <Paragragh>{customerDetail.organisationNr}</Paragragh>
+                     <Column col="5" margin=" 20px auto 20px auto" border="3px double #262626" padding="15px">
+                        <Row flex>
+                           <Column col="5">
+                              <Paragragh textTransform="uppercase" fontWeight="bold">Name:</Paragragh>
+                           </Column>
+                           <Column col="3">
+                              <Paragragh>{customerDetail.name}</Paragragh>
+                           </Column>
+                        </Row>
+                        <Row flex>
+                           <Column col="5">
+                              <Paragragh textTransform="uppercase" fontWeight="bold">Organisation number:</Paragragh>
+                           </Column>
+                           <Column col="3">
+                              <Paragragh>{customerDetail.organisationNr}</Paragragh>
+                           </Column>
+                        </Row>
+                        <Row flex>
+                           <Column col="5">
+                              <Paragragh textTransform="uppercase" fontWeight="bold">VAT number:</Paragragh>
+                           </Column>
+                           <Column col="3">
+                              <Paragragh>{customerDetail.vatNr}</Paragragh>
+                           </Column>
+                        </Row>
+                        <Row flex>
+                           <Column col="5">
+                              <Paragragh textTransform="uppercase" fontWeight="bold">Reference:</Paragragh>
+                           </Column>
+                           <Column col="3">
+                              <Paragragh>{customerDetail.reference}</Paragragh>
+                           </Column>
+                        </Row>
+                        <Row flex>
+                           <Column col="5">
+                              <Paragragh textTransform="uppercase" fontWeight="bold">Payment Term:</Paragragh>
+                           </Column>
+                           <Column col="3">
+                              <Paragragh>{customerDetail.paymentTerm} days</Paragragh>
+                           </Column>
+                        </Row>
+                        <Row flex>
+                           <Column col="5">
+                              <Paragragh textTransform="uppercase" fontWeight="bold">Website:</Paragragh>
+                           </Column>
+                           <Column col="3">
+                              <Paragragh>{customerDetail.website}</Paragragh>
+                           </Column>
+                        </Row>
+                        <Row flex>
+                           <Column col="5">
+                              <Paragragh textTransform="uppercase" fontWeight="bold">Email:</Paragragh>
+                           </Column>
+                           <Column col="3">
+                              <Paragragh>{customerDetail.email}</Paragragh>
+                           </Column>
+                        </Row>
+                        <Row flex>
+                           <Column col="5">
+                              <Paragragh textTransform="uppercase" fontWeight="bold">Phone number:</Paragragh>
+                           </Column>
+                           <Column col="3">
+                              <Paragragh>{customerDetail.phoneNumber}</Paragragh>
+                           </Column>
+                        </Row>
+                        <Flex>
+                           <Button onClick={() => handleOnSelect(customerDetail.id)}>Update information</Button>
+                           <Button onClick={() => handleOnDelete(customerDetail.id)}>Delete customer</Button>
+                        </Flex>
                      </Column>
                   </Row>
-                  <Row flex>
-                     <Column col="5">
-                        <Paragragh textTransform="uppercase" fontWeight="bold">VAT number:</Paragragh>
-                     </Column>
-                     <Column col="3">
-                        <Paragragh>{customerDetail.vatNr}</Paragragh>
-                     </Column>
-                  </Row>
-                  <Row flex>
-                     <Column col="5">
-                        <Paragragh textTransform="uppercase" fontWeight="bold">Reference:</Paragragh>
-                     </Column>
-                     <Column col="3">
-                        <Paragragh>{customerDetail.reference}</Paragragh>
-                     </Column>
-                  </Row>
-                  <Row flex>
-                     <Column col="5">
-                        <Paragragh textTransform="uppercase" fontWeight="bold">Payment Term:</Paragragh>
-                     </Column>
-                     <Column col="3">
-                        <Paragragh>{customerDetail.paymentTerm} days</Paragragh>
-                     </Column>
-                  </Row>
-                  <Row flex>
-                     <Column col="5">
-                        <Paragragh textTransform="uppercase" fontWeight="bold">Website:</Paragragh>
-                     </Column>
-                     <Column col="3">
-                        <Paragragh>{customerDetail.website}</Paragragh>
-                     </Column>
-                  </Row>
-                  <Row flex>
-                     <Column col="5">
-                        <Paragragh textTransform="uppercase" fontWeight="bold">Email:</Paragragh>
-                     </Column>
-                     <Column col="3">
-                        <Paragragh>{customerDetail.email}</Paragragh>
-                     </Column>
-                  </Row>
-                  <Row flex>
-                     <Column col="5">
-                        <Paragragh textTransform="uppercase" fontWeight="bold">Phone number:</Paragragh>
-                     </Column>
-                     <Column col="3">
-                        <Paragragh>{customerDetail.phoneNumber}</Paragragh>
-                     </Column>
-                  </Row>
-                  <Flex>
-                     <Button onClick={() => handleOnSelect(customerDetail.id)}>Update information</Button>
-                     <Button onClick={() => handleOnDelete(customerDetail.id)}>Delete customer</Button>
-                  </Flex>
-               </Column>
-            </>
-         ) : "Not found"}
-
-         <Form margin padding boxShadow="5px 5px 5px 5px #262626" onSubmit={handleOnSubmit}>
-            <Row>
-               <Heading2>Update information</Heading2>
-            </Row>
-            <Row flex>
-               <Column col="4">
-                  <Label htmlFor="name">Name </Label>
-               </Column>
-               <Column col="8">
-                  <Input
-                     type="text"
-                     placeholder="Name"
-                     value={name}
-                     setValue={setName}
-                     required="required"
-                  /><br/>
-               </Column>
-            </Row>
-            <Row flex>
-               <Column col="4">
-                  <Label htmlFor="organisationNr">Organisation Number </Label>
-               </Column>
-               <Column col="8">
-                  <Input
-                     type="text"
-                     placeholder="Organisation Number"
-                     value={organisationNr}
-                     setValue={setOrganisationNr}
-                     required="required"
-                  /><br/>
-               </Column>
-            </Row>
-            <Row flex>
-               <Column col="4">
-                  <Label htmlFor="vatNr">VAT number </Label>
-               </Column>
-               <Column col="8">
-                  <Input
-                     type="text"
-                     placeholder="SExxxxxxxxxx"
-                     value={vatNr}
-                     setValue={setVatNr}
-                     required="required"
-                  /><br/>
-               </Column>
-            </Row>
-            <Row flex>
-               <Column col="4">
-                  <Label htmlFor="reference">Reference </Label>
-               </Column>
-               <Column col="8">
-                  <Input
-                     type="text"
-                     placeholder="Reference"
-                     value={reference}
-                     setValue={setReference}
-                     required="required"
-                  /><br/>
-               </Column>
-            </Row>
-            <Row flex>
-               <Column col="4">
-                  <Label htmlFor="paymentTerm">Payment Term </Label>
-               </Column>
-               <Column col="8">
-                  <Input
-                     type="number"
-                     placeholder="Number of days"
-                     value={paymentTerm}
-                     setValue={setPaymentTerm}
-                     required="required"
-                  /><br/>
-               </Column>
-            </Row>
-            <Row flex>
-               <Column col="4">
-                  <Label htmlFor="website">Website </Label>
-               </Column>
-               <Column col="8">
-                  <Input
-                     type="text"
-                     placeholder="Website"
-                     value={website}
-                     setValue={setWebsite}
-                     required="required"
-                  /><br/>
-               </Column>
-            </Row>
-            <Row flex>
-               <Column col="4">
-                  <Label htmlFor="email">Email </Label>
-               </Column>
-               <Column col="8">
-                  <Input
-                     type="text"
-                     placeholder="exempel@exempel.com"
-                     value={email}
-                     setValue={setEmail}
-                     required="required"
-                  /><br/>
-               </Column>
-            </Row>
-            <Row flex>
-               <Column col="4">
-                  <Label htmlFor="phoneNumber">Phone Number </Label>
-               </Column>
-               <Column col="8">
-                  <Input
-                     type="text"
-                     placeholder="077 777 77 77"
-                     value={phoneNumber}
-                     setValue={setPhoneNumber}
-                     required="required"
-                  /><br/>
-               </Column>
-            </Row>
-            <Button type="submit">Update</Button>
-         </Form>
-      </div>
+               </>
+            ) : "Not found"}
+         <Column col="6">
+            <Form margin padding onSubmit={handleOnSubmit}>
+               <Row>
+                  <Heading2 color="#fff">Update information</Heading2>
+               </Row>
+               <Column col="8" margin="5px auto">
+               <Input
+                  type="text"
+                  placeholder="Name"
+                  value={name}
+                  setValue={setName}
+                  required="required"
+               /><br/>
+            </Column>
+            <Column col="8" margin="5px auto" >
+               <Input
+                  type="text"
+                  placeholder="Organisation Number"
+                  value={organisationNr}
+                  setValue={setOrganisationNr}
+                  required="required"
+               /><br/>
+            </Column>
+            <Column col="8" margin="5px auto">
+               <Input
+                  type="text"
+                  placeholder="VAT number"
+                  value={vatNr}
+                  setValue={setVatNr}
+                  required="required"
+               /><br/>
+            </Column>
+            <Column col="8" margin="5px auto">
+               <Input
+                  type="text"
+                  placeholder="Reference"
+                  value={reference}
+                  setValue={setReference}
+                  required="required"
+               /><br/>
+            </Column>
+            <Column col="8" margin="5px auto">
+               <Input
+                  type="number"
+                  placeholder="Payment Term (days)"
+                  value={paymentTerm}
+                  setValue={setPaymentTerm}
+                  required="required"
+               /><br/>
+            </Column>
+            <Column col="8" margin="5px auto">
+               <Input
+                  type="text"
+                  placeholder="Website"
+                  setValue={setWebsite}
+                  required="required"
+               /><br/>
+            </Column>
+            <Column col="8" margin="5px auto">
+               <Input
+                  type="text"
+                  placeholder="Email"
+                  value={email}
+                  setValue={setEmail}
+                  required="required"
+               /><br/>
+            </Column>
+            <Column col="8" margin="5px auto">
+               <Input
+                  type="text"
+                  placeholder="Phone Number"
+                  value={phoneNumber}
+                  setValue={setPhoneNumber}
+                  required="required"
+               /><br/>
+            </Column>
+               <Button type="submit">Update</Button>
+            </Form>
+         </Column>
+      </>
    )
 }
