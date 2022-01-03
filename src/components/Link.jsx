@@ -9,8 +9,7 @@ color: ${props => props.color || "#000"};
 text-transform: uppercase;
 &:hover{
    border-bottom: ${props => props.border || "1px solid #000"};
-   font-size: ${props => props.fontSize || "18px"};
-   color: ${props => props.colorHover || "#000"};
+   color: ${props => props.colorHover};
 }
 `;
 
