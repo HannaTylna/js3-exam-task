@@ -8,6 +8,7 @@ align-items: ${props => props.align || "stretch"};
 justify-content: ${props => props.justify || "stretch"};
 margin-top: ${props => props.marginTop};
 margin-bottom: ${props => props.marginBottom};
+margin: ${props => props.margin};
 padding: ${props => props.padding};
 border-bottom: ${props => props.borderBottom};
 border-top: ${props => props.borderTop};

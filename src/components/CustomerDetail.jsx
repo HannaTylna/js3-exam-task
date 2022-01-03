@@ -13,6 +13,9 @@ import Form from './Form';
 import Row from './Row';
 import Heading2 from './Heading2';
 import Flex from './Flex';
+import Table from './Table';
+import TableBody from './TableBody';
+import NavBar from './NavBar';
 
 export default function CustomerDetail(props) {
    const [customerDetail, setCustomerDetail] = useState({});
@@ -138,18 +141,150 @@ export default function CustomerDetail(props) {
 
    return (
       <>
-            {customerDetail ? (
-               <>
-                  <Row flex>
-                     <Column width="40%" col="3" padding="15px" textAlign="center" margin="20px auto 20px auto" >
-                        <BackToHomePage />
-                        <MyData />
-                     </Column>
-                     <Column col="9">
-                        <Heading1 center boxShadow="5px 5px 5px 5px #262626" width="90%" padding="5px" >You are viewing customer with id {customerDetail.id}</Heading1>
-                     </Column>
-                  </Row>
-                  <Row flex>
+         {customerDetail ? (
+            <>
+               {/*<Row flex>
+                  <Column width="40%" col="3" padding="15px" textAlign="center" margin="20px auto 20px auto" >
+                     <BackToHomePage />
+                     <MyData />
+                  </Column>
+               </Row>*/}
+               <NavBar/>
+               <Row flex margin="20px">
+                  <Column col="5" margin=" 0px auto" padding="15px">
+                     <Heading2 margin="0px auto 20px auto" textTransform="none">You are viewing customer with id {customerDetail.id}</Heading2>
+                     <Table background="#5f6a91">
+                        <tbody>
+                           <TableBody tr>
+                              <TableBody fontWeight="bold" textAlign="left">Name:</TableBody>
+                              <TableBody>{customerDetail.name}</TableBody>
+                           </TableBody>
+                           <TableBody tr>
+                              <TableBody fontWeight="bold" textAlign="left">Organisation number:</TableBody>
+                              <TableBody>{customerDetail.organisationNr}</TableBody>
+                           </TableBody>
+                           <TableBody tr>
+                              <TableBody fontWeight="bold" textAlign="left">VAT Number:</TableBody>
+                              <TableBody>{customerDetail.vatNr}</TableBody>
+                           </TableBody>
+                           <TableBody tr>
+                              <TableBody fontWeight="bold" textAlign="left">Reference:</TableBody>
+                              <TableBody>{customerDetail.reference}</TableBody>
+                           </TableBody>
+                           <TableBody tr>
+                              <TableBody fontWeight="bold" textAlign="left">Payment Term (days):</TableBody>
+                              <TableBody>{customerDetail.paymentTerm}</TableBody>
+                           </TableBody>
+                           <TableBody tr>
+                              <TableBody fontWeight="bold" textAlign="left">Website:</TableBody>
+                              <TableBody>{customerDetail.website}</TableBody>
+                           </TableBody>
+                           <TableBody tr>
+                              <TableBody fontWeight="bold" textAlign="left">Email:</TableBody>
+                              <TableBody>{customerDetail.email}</TableBody>
+                           </TableBody>
+                           <TableBody tr>
+                              <TableBody fontWeight="bold" textAlign="left">Phone number:</TableBody>
+                              <TableBody>{customerDetail.phoneNumber}</TableBody>
+                           </TableBody>
+                           <TableBody tr>
+                              <TableBody>
+                                 <Button onClick={() => handleOnDelete(customerDetail.id)}>Delete customer</Button>
+                              </TableBody>
+                              <TableBody>
+                                 <Button onClick={() => handleOnSelect(customerDetail.id)}>Update information</Button>
+                              </TableBody>
+                           </TableBody>
+                        </tbody>
+                     </Table>
+                     <Flex>
+                        
+                        
+                     </Flex>
+                  </Column>
+                  <Column col="6">
+                     <Form margin padding onSubmit={handleOnSubmit}>
+                        <Row>
+                           <Heading2 color="#fff">Update information</Heading2>
+                        </Row>
+                        <Column col="8" margin="5px auto">
+                           <Input
+                              type="text"
+                              placeholder="Name"
+                              value={name}
+                              setValue={setName}
+                              required="required"
+                           /><br/>
+                        </Column>
+                        <Column col="8" margin="5px auto" >
+                           <Input
+                              type="text"
+                              placeholder="Organisation Number"
+                              value={organisationNr}
+                              setValue={setOrganisationNr}
+                              required="required"
+                           /><br/>
+                        </Column>
+                        <Column col="8" margin="5px auto">
+                           <Input
+                              type="text"
+                              placeholder="VAT number"
+                              value={vatNr}
+                              setValue={setVatNr}
+                              required="required"
+                           /><br/>
+                        </Column>
+                        <Column col="8" margin="5px auto">
+                           <Input
+                              type="text"
+                              placeholder="Reference"
+                              value={reference}
+                              setValue={setReference}
+                              required="required"
+                           /><br/>
+                        </Column>
+                        <Column col="8" margin="5px auto">
+                           <Input
+                              type="number"
+                              placeholder="Payment Term (days)"
+                              value={paymentTerm}
+                              setValue={setPaymentTerm}
+                              required="required"
+                           /><br/>
+                        </Column>
+                        <Column col="8" margin="5px auto">
+                           <Input
+                              type="text"
+                              placeholder="Website"
+                              value={website}
+                              setValue={setWebsite}
+                              required="required"
+                           /><br/>
+                        </Column>
+                        <Column col="8" margin="5px auto">
+                           <Input
+                              type="text"
+                              placeholder="Email"
+                              value={email}
+                              setValue={setEmail}
+                              required="required"
+                           /><br/>
+                        </Column>
+                        <Column col="8" margin="5px auto">
+                           <Input
+                              type="text"
+                              placeholder="Phone Number"
+                              value={phoneNumber}
+                              setValue={setPhoneNumber}
+                              required="required"
+                           /><br/>
+                        </Column>
+                        <Button type="submit" margin="10px auto">Update</Button>
+                     </Form>
+                  </Column>
+               </Row>
+               
+                  {/*<Row flex>
                      <Column col="5" margin=" 20px auto 20px auto" border="3px double #262626" padding="15px">
                         <Row flex>
                            <Column col="5">
@@ -220,88 +355,9 @@ export default function CustomerDetail(props) {
                            <Button onClick={() => handleOnDelete(customerDetail.id)}>Delete customer</Button>
                         </Flex>
                      </Column>
-                  </Row>
+                  </Row>*/}
                </>
             ) : "Not found"}
-         <Column col="6">
-            <Form margin padding onSubmit={handleOnSubmit}>
-               <Row>
-                  <Heading2 color="#fff">Update information</Heading2>
-               </Row>
-               <Column col="8" margin="5px auto">
-               <Input
-                  type="text"
-                  placeholder="Name"
-                  value={name}
-                  setValue={setName}
-                  required="required"
-               /><br/>
-            </Column>
-            <Column col="8" margin="5px auto" >
-               <Input
-                  type="text"
-                  placeholder="Organisation Number"
-                  value={organisationNr}
-                  setValue={setOrganisationNr}
-                  required="required"
-               /><br/>
-            </Column>
-            <Column col="8" margin="5px auto">
-               <Input
-                  type="text"
-                  placeholder="VAT number"
-                  value={vatNr}
-                  setValue={setVatNr}
-                  required="required"
-               /><br/>
-            </Column>
-            <Column col="8" margin="5px auto">
-               <Input
-                  type="text"
-                  placeholder="Reference"
-                  value={reference}
-                  setValue={setReference}
-                  required="required"
-               /><br/>
-            </Column>
-            <Column col="8" margin="5px auto">
-               <Input
-                  type="number"
-                  placeholder="Payment Term (days)"
-                  value={paymentTerm}
-                  setValue={setPaymentTerm}
-                  required="required"
-               /><br/>
-            </Column>
-            <Column col="8" margin="5px auto">
-               <Input
-                  type="text"
-                  placeholder="Website"
-                  setValue={setWebsite}
-                  required="required"
-               /><br/>
-            </Column>
-            <Column col="8" margin="5px auto">
-               <Input
-                  type="text"
-                  placeholder="Email"
-                  value={email}
-                  setValue={setEmail}
-                  required="required"
-               /><br/>
-            </Column>
-            <Column col="8" margin="5px auto">
-               <Input
-                  type="text"
-                  placeholder="Phone Number"
-                  value={phoneNumber}
-                  setValue={setPhoneNumber}
-                  required="required"
-               /><br/>
-            </Column>
-               <Button type="submit">Update</Button>
-            </Form>
-         </Column>
       </>
    )
 }

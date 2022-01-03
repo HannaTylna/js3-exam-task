@@ -143,7 +143,7 @@ export default function CustomerCreate(props) {
                   required="required"
                /><br/>
             </Column>
-            <Button type="submit" margin="15px auto 0px 30px">Create a new customer</Button>
+            <Button type="submit" margin="15px auto 0px auto">Create a new customer</Button>
          </Form>
       </>
    )

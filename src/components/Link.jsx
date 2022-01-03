@@ -7,8 +7,9 @@ font-weight: ${props => props.fontWeight || "bold"};
 font-size: 16px;
 color: ${props => props.color || "#000"};
 &:hover{
-   border-bottom: 1px solid #000;
-   font-size: 18px;
+   border-bottom: ${props => props.border || "1px solid #000"};
+   font-size: ${props => props.fontSize || "18px"};
+   color: ${props => props.colorHover || "#000"};
 }
 `;
 const LinkButton = styled(StyledLink)`

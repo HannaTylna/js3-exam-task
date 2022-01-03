@@ -14,6 +14,7 @@ margin: ${props => props.margin || "0px 0px 10px 0px"};
 
 const RowFlex = styled(StyledRow)`
 display: flex;
+margin: ${props => props.margin};
 `;
 
 export default function Row(props) {

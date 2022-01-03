@@ -6,7 +6,7 @@ display: ${props => props.display || "flex"};
 padding: ${props => props.padding || "5px"};
 margin: ${props => props.margin};
 text-transform: ${props => props.textTransform || "uppercase"};
-background: #499edf;
+background: #5f6a91;
 color: #fff;
 border: 2px double #fff;
 &:hover{

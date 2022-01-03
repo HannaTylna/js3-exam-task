@@ -7,7 +7,8 @@ import MyData from "../components/MyData";
 import Link from "../components/Link";
 import Column from "../components/Column";
 import Flex from "../components/Flex";
-import Paragragh from "../components/Paragragh";
+import Table from "../components/Table";
+import TableBody from "../components/TableBody";
 
 
 export default function HomePage() {
@@ -46,11 +47,36 @@ export default function HomePage() {
             </Column>
          </Flex>
          
-         
-         <Flex display="block" >
-            <Column width="100%" col="7" margin=" 20px auto 20px auto" border="3px double #262626" >
+         <Flex display="block" margin="20px">
+            <Column width="100%" col="6" margin=" 20px auto 20px auto" >
                <Heading2 margin="10px auto 20px auto">Customers</Heading2>
-               <Flex padding="5px 0px" borderBottom="2px solid #262626" borderTop="2px solid #262626">
+               <Table background="#5f6a91">
+                  <thead>
+                     <TableBody tr>
+                        <TableBody></TableBody>
+                        <TableBody fontWeight="bold">Name</TableBody>
+                        <TableBody fontWeight="bold">Email</TableBody>
+                        <TableBody fontWeight="bold">ID</TableBody>
+                        <TableBody></TableBody>
+                     </TableBody>
+                  </thead>
+                  <tbody>
+                     {customerList && customerList.map((customer, index) => {
+                        return (
+                           <TableBody tr key={index}>
+                              <TableBody>{index + 1}</TableBody>
+                              <TableBody >{customer.name}</TableBody>
+                              <TableBody >{customer.email}</TableBody>
+                              <TableBody>{customer.id}</TableBody>
+                              <TableBody fontWeight="bold" >
+                                 <Link href={`/home/${customer.id}` } colorHover="#5f6a91" fontSize="16px"  border="none">&lt;...&gt;</Link>
+                              </TableBody>
+                           </TableBody>
+                        )
+                     })}
+                  </tbody>
+               </Table>
+               {/*<Flex padding="5px 0px" borderBottom="2px solid #262626" borderTop="2px solid #262626">
                   <Column col="3" textAlign="center"><strong>NAME</strong></Column>
                   <Column col="3" textAlign="center"><strong>EMAIL</strong></Column>
                   <Column col="2" textAlign="center"><strong>ID</strong></Column>
@@ -73,9 +99,9 @@ export default function HomePage() {
                         </Column>
                      </Flex>
                   )
-               })}
+               })}*/}
             </Column>
-            <Column col="5" >
+            <Column col="6" width="80%" >
                <CustomerCreate onSuccess={fetchData} />
             </Column>
          </Flex>   
