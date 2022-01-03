@@ -61,7 +61,15 @@ export default function CustomerCreate(props) {
       })
          .then(res => res.json())
          .then(data => {
-            return props.onSuccess()
+            props.onSuccess()
+            setName("")
+            setOrganisationNr("")
+            setVatNr("")
+            setReference("")
+            setPaymentTerm("")
+            setWebsite("")
+            setEmail("")
+            setPhoneNumber("")
          })
    }
    

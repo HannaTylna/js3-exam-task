@@ -131,6 +131,14 @@ export default function CustomerDetail(props) {
             .then(data => {
                console.log(data);
                setCustomerDetail(data);
+               setName("")
+               setOrganisationNr("")
+               setVatNr("")
+               setReference("")
+               setPaymentTerm("")
+               setWebsite("")
+               setEmail("")
+               setPhoneNumber("")
             })
          })
    }
