@@ -48,7 +48,7 @@ export default function LoginPage() {
                      <Link href="/auth/users/"> here</Link>
                   </Paragragh>
                </Column>
-               <Column col="7">
+               <Column col="4">
                   <Form onSubmit={handleOnSubmit}>
                      <Row>
                         <Heading2 color="#fff">Login</Heading2>

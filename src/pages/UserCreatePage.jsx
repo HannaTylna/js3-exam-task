@@ -50,7 +50,7 @@ export default function UserCreatePage() {
 
    return (
       <>
-         <Form margin="20px auto"  onSubmit={handleOnSubmit}>
+         <Form width="50%" margin="20px auto"  onSubmit={handleOnSubmit}>
             <Row>
                <Heading2 color="#fff">Registration</Heading2>
             </Row>

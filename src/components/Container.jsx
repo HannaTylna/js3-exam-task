@@ -5,7 +5,6 @@ const StyledContainer = styled.div`
 font-family: "Times New Roman", Times, serif;
 margin: 0px auto;
 
-padding: 0px 10px;
 
 @media (max-width: 576px){
    max-width: 540px;
@@ -17,7 +16,7 @@ padding: 0px 10px;
    max-width: 960px;
 };
 @media (max-width: 1200px){
-   max-width: 1140px;
+   max-width: 1175px;
 };
 `
 

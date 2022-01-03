@@ -2,13 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Button from './Button';
-import Heading1 from './Heading1';
 import Input from './Input';
-import Paragragh from '../components/Paragragh';
-import Label from "./Label";
-import BackToHomePage from '../components/BackToHomePage';
 import Column from '../components/Column';
-import MyData from '../components/MyData';
 import Form from './Form';
 import Row from './Row';
 import Heading2 from './Heading2';
@@ -16,6 +11,7 @@ import Flex from './Flex';
 import Table from './Table';
 import TableBody from './TableBody';
 import NavBar from './NavBar';
+import Link from './Link';
 
 export default function CustomerDetail(props) {
    const [customerDetail, setCustomerDetail] = useState({});
@@ -143,15 +139,20 @@ export default function CustomerDetail(props) {
       <>
          {customerDetail ? (
             <>
-               {/*<Row flex>
-                  <Column width="40%" col="3" padding="15px" textAlign="center" margin="20px auto 20px auto" >
-                     <BackToHomePage />
-                     <MyData />
+               <NavBar />
+               <Row>
+                  <Column margin="5px">
+                     <Link href="/home" border="none">
+                        <img
+                           alt="A back arrow"
+                           src="https://img.icons8.com/ios-filled/50/4a90e2/left2.png"
+                        />
+                     </Link>
+                     
                   </Column>
-               </Row>*/}
-               <NavBar/>
-               <Row flex margin="20px">
-                  <Column col="5" margin=" 0px auto" padding="15px">
+               </Row>
+               <Row margin="40px">
+                  <Column col="8" width="80%">
                      <Heading2 margin="0px auto 20px auto" textTransform="none">You are viewing customer with id {customerDetail.id}</Heading2>
                      <Table background="#5f6a91">
                         <tbody>
@@ -202,7 +203,7 @@ export default function CustomerDetail(props) {
                         
                      </Flex>
                   </Column>
-                  <Column col="6">
+                  <Column col="4" width="80%">
                      <Form margin padding onSubmit={handleOnSubmit}>
                         <Row>
                            <Heading2 color="#fff">Update information</Heading2>
@@ -283,79 +284,6 @@ export default function CustomerDetail(props) {
                      </Form>
                   </Column>
                </Row>
-               
-                  {/*<Row flex>
-                     <Column col="5" margin=" 20px auto 20px auto" border="3px double #262626" padding="15px">
-                        <Row flex>
-                           <Column col="5">
-                              <Paragragh textTransform="uppercase" fontWeight="bold">Name:</Paragragh>
-                           </Column>
-                           <Column col="3">
-                              <Paragragh>{customerDetail.name}</Paragragh>
-                           </Column>
-                        </Row>
-                        <Row flex>
-                           <Column col="5">
-                              <Paragragh textTransform="uppercase" fontWeight="bold">Organisation number:</Paragragh>
-                           </Column>
-                           <Column col="3">
-                              <Paragragh>{customerDetail.organisationNr}</Paragragh>
-                           </Column>
-                        </Row>
-                        <Row flex>
-                           <Column col="5">
-                              <Paragragh textTransform="uppercase" fontWeight="bold">VAT number:</Paragragh>
-                           </Column>
-                           <Column col="3">
-                              <Paragragh>{customerDetail.vatNr}</Paragragh>
-                           </Column>
-                        </Row>
-                        <Row flex>
-                           <Column col="5">
-                              <Paragragh textTransform="uppercase" fontWeight="bold">Reference:</Paragragh>
-                           </Column>
-                           <Column col="3">
-                              <Paragragh>{customerDetail.reference}</Paragragh>
-                           </Column>
-                        </Row>
-                        <Row flex>
-                           <Column col="5">
-                              <Paragragh textTransform="uppercase" fontWeight="bold">Payment Term:</Paragragh>
-                           </Column>
-                           <Column col="3">
-                              <Paragragh>{customerDetail.paymentTerm} days</Paragragh>
-                           </Column>
-                        </Row>
-                        <Row flex>
-                           <Column col="5">
-                              <Paragragh textTransform="uppercase" fontWeight="bold">Website:</Paragragh>
-                           </Column>
-                           <Column col="3">
-                              <Paragragh>{customerDetail.website}</Paragragh>
-                           </Column>
-                        </Row>
-                        <Row flex>
-                           <Column col="5">
-                              <Paragragh textTransform="uppercase" fontWeight="bold">Email:</Paragragh>
-                           </Column>
-                           <Column col="3">
-                              <Paragragh>{customerDetail.email}</Paragragh>
-                           </Column>
-                        </Row>
-                        <Row flex>
-                           <Column col="5">
-                              <Paragragh textTransform="uppercase" fontWeight="bold">Phone number:</Paragragh>
-                           </Column>
-                           <Column col="3">
-                              <Paragragh>{customerDetail.phoneNumber}</Paragragh>
-                           </Column>
-                        </Row>
-                        <Flex>
-                           <Button onClick={() => handleOnSelect(customerDetail.id)}>Update information</Button>
-                           <Button onClick={() => handleOnDelete(customerDetail.id)}>Delete customer</Button>
-                        </Flex>
-                     </Column>
-                  </Row>*/}
                </>
             ) : "Not found"}
       </>

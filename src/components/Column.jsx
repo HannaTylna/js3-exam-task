@@ -13,6 +13,7 @@ border: ${props => props.border};
 
 @media (max-width: 992px){
    width: ${props => props.width}
+   
 };
 `;
 

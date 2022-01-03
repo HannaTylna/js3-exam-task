@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useCallback } from 'react';
 
 import { MyDataContext } from '../App';
 import Paragragh from '../components/Paragragh';
-import Link from './Link';
 
 export default function MyData() {
    const { myData, setMyData } = useContext(MyDataContext);
@@ -26,15 +25,15 @@ export default function MyData() {
    }, [getUserInformation])
 
    return (
-      <div>
-         {myData &&
+      <>
+         {myData ?
             <>
             <Paragragh textAlign="center" marginBottom="20px" >
                Hello, <strong>{myData.firstName} {myData.lastName}</strong>. Your email is <strong>{myData.email}</strong>
             </Paragragh>
             </>
+            : " "
          }
-         <Link href="/" button>Log out</Link>
-      </div>
+      </>
    )
 }

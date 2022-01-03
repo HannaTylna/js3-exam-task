@@ -5,7 +5,6 @@ import Column from "./Column";
 import Form from "./Form";
 import Heading2 from "./Heading2";
 import Input from "./Input";
-import Label from "./Label";
 import Row from "./Row";
 
 export default function CustomerCreate(props) {
