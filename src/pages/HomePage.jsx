@@ -9,6 +9,7 @@ import Flex from "../components/Flex";
 import Table from "../components/Table";
 import TableBody from "../components/TableBody";
 import NavBar from "../components/NavBar";
+import Footer from "../components/Footer";
 
 
 export default function HomePage() {
@@ -39,7 +40,7 @@ export default function HomePage() {
    return (
       <>
          <NavBar />
-         <Flex display="block" margin="50px">
+         <Flex display="block" margin="100px 50px 100px 50px">
             <Column width="100%" col="8" >
                <Heading2 margin="10px auto 20px auto">Customers</Heading2>
                <Table background="#5f6a91">
@@ -73,8 +74,8 @@ export default function HomePage() {
             <Column col="4" width="80%" >
                <CustomerCreate onSuccess={fetchData} />
             </Column>
-         </Flex>   
-         
+         </Flex>
+         <Footer />
       </>
    )
 }

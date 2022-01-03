@@ -10,6 +10,11 @@ const StyledNavBar = styled.div`
 height: 80px;
 background: #499edf;
 margin: 0px;
+position: fixed;
+width: 100%;
+top: 0;
+left: 0;
+z-index: 10;
 `;
 
 export default function NavBar() {

@@ -12,6 +12,7 @@ import Table from './Table';
 import TableBody from './TableBody';
 import NavBar from './NavBar';
 import Link from './Link';
+import Footer from './Footer';
 
 export default function CustomerDetail(props) {
    const [customerDetail, setCustomerDetail] = useState({});
@@ -148,19 +149,17 @@ export default function CustomerDetail(props) {
          {customerDetail ? (
             <>
                <NavBar />
-               <Row>
-                  <Column margin="5px">
+               <Flex display="block" margin="100px 50px 100px 50px">
+                  
+                  <Column margin="5px" col="1">
                      <Link href="/home" border="none">
                         <img
                            alt="A back arrow"
                            src="https://img.icons8.com/ios-filled/50/4a90e2/left2.png"
                         />
                      </Link>
-                     
                   </Column>
-               </Row>
-               <Row margin="40px">
-                  <Column col="8" width="80%">
+                  <Column col="7" width="80%">
                      <Heading2 margin="0px auto 20px auto" textTransform="none">You are viewing customer with id {customerDetail.id}</Heading2>
                      <Table background="#5f6a91">
                         <tbody>
@@ -291,9 +290,11 @@ export default function CustomerDetail(props) {
                         <Button type="submit" margin="10px auto">Update</Button>
                      </Form>
                   </Column>
-               </Row>
-               </>
-            ) : "Not found"}
+               </Flex>
+               
+               <Footer />
+            </>
+         ) : "Not found"}
       </>
    )
 }

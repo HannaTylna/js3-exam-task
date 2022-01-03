@@ -6,6 +6,7 @@ text-align: ${props => props.textAlign};
 margin-bottom: ${props => props.marginBottom};
 font-weight: ${props => props.fontWeight};
 text-transform: ${props => props.textTransform};
+color: ${props => props.color};
 `;
 
 export default function Paragragh(props) {
