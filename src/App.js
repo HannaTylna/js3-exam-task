@@ -7,6 +7,8 @@ import CustomerDetailPage from "./pages/CustomerDetailPage";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import UserCreatePage from "./pages/UserCreatePage";
+import UserActivatePage from "./pages/UserActivatePage";
+import ActivateTextPage from "./pages/ActivateTextPage";
 
 const MyDataContext = createContext([]);
    
@@ -24,6 +26,8 @@ function App() {
                <Route path="/home" element={<HomePage />} />
                <Route path="/home/:id" element={<CustomerDetailPage />}/>
                <Route path="/auth/users/" element={<UserCreatePage />} />
+               <Route path="/activate" element={<ActivateTextPage />} />
+               <Route path="/login" element={<UserActivatePage />} />
             </Routes>
          </Container>
       </MyDataContext.Provider>

@@ -19,6 +19,8 @@ export default function UserCreatePage() {
    const [password, setPassword] = useState("");
    const [organisationName, setOrganisationName] = useState("");
    const [organisationKind, setOrganisationKind] = useState("");
+   
+   const [response, setResponse] = useState(null);
    const navigate = useNavigate();
 
    function handleOnSubmit(e) {
@@ -42,8 +44,7 @@ export default function UserCreatePage() {
       })
          .then(res => res.json())
          .then((data) => {
-            console.log(data)
-            navigate("/")
+            setResponse(data)
       })
    }
    
@@ -140,9 +141,13 @@ export default function UserCreatePage() {
             </Row>
             <Button type="submit">Sign in</Button>
          </Form>
+         
          <Paragragh textAlign="center">If you already have login information, click  
             <Link href="/"> here</Link>
          </Paragragh>
+         {response && (
+            navigate("/activate")
+         )}
       </>
       
    )

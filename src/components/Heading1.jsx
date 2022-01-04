@@ -11,8 +11,6 @@ text-transform: ${props => props.textTransform};
 `
 const Heading1Center = styled(StyledHeading1)`
 text-align: ${props => props.textAlign || "center"};
-border-radius: ${props => props.borderRadius || "20px"};
-box-shadow: ${props => props.boxShadow || "none"};
 `;
 
 export default function Heading1(props) {

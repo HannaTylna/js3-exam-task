@@ -86,7 +86,7 @@ export default function CustomerCreate(props) {
                   value={name}
                   setValue={setName}
                   required="required"
-               /><br/>
+               /><br />
             </Column>
             <Column col="8" margin="5px auto" >
                <Input

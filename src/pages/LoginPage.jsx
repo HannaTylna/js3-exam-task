@@ -80,14 +80,11 @@ export default function LoginPage() {
                               required="required"
                            /><br/>
                         </Column>
-                        
                      </Row>
                      <Button type="submit">Login</Button>
                   </Form>
                </Column>
-            
             </Row>
-            
          </Flex> 
       </>
    )
