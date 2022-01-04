@@ -7,6 +7,7 @@ margin-bottom: ${props => props.marginBottom};
 font-weight: ${props => props.fontWeight};
 text-transform: ${props => props.textTransform};
 color: ${props => props.color};
+font-size: ${props => props.fontSize};
 `;
 
 export default function Paragragh(props) {

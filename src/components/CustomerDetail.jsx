@@ -222,7 +222,8 @@ export default function CustomerDetail(props) {
                               value={name}
                               setValue={setName}
                               required="required"
-                           /><br/>
+                              name="name"
+                           /><br />
                         </Column>
                         <Column col="8" margin="5px auto" >
                            <Input
@@ -231,6 +232,7 @@ export default function CustomerDetail(props) {
                               value={organisationNr}
                               setValue={setOrganisationNr}
                               required="required"
+                              name="organisationNr"
                            /><br/>
                         </Column>
                         <Column col="8" margin="5px auto">
@@ -240,6 +242,7 @@ export default function CustomerDetail(props) {
                               value={vatNr}
                               setValue={setVatNr}
                               required="required"
+                              name="vatNr"
                            /><br/>
                         </Column>
                         <Column col="8" margin="5px auto">
@@ -249,6 +252,7 @@ export default function CustomerDetail(props) {
                               value={reference}
                               setValue={setReference}
                               required="required"
+                              name="reference"
                            /><br/>
                         </Column>
                         <Column col="8" margin="5px auto">
@@ -258,6 +262,7 @@ export default function CustomerDetail(props) {
                               value={paymentTerm}
                               setValue={setPaymentTerm}
                               required="required"
+                              name="paymentTerm"
                            /><br/>
                         </Column>
                         <Column col="8" margin="5px auto">
@@ -267,6 +272,7 @@ export default function CustomerDetail(props) {
                               value={website}
                               setValue={setWebsite}
                               required="required"
+                              name="website"
                            /><br/>
                         </Column>
                         <Column col="8" margin="5px auto">
@@ -276,6 +282,7 @@ export default function CustomerDetail(props) {
                               value={email}
                               setValue={setEmail}
                               required="required"
+                              name="email"
                            /><br/>
                         </Column>
                         <Column col="8" margin="5px auto">
@@ -285,6 +292,7 @@ export default function CustomerDetail(props) {
                               value={phoneNumber}
                               setValue={setPhoneNumber}
                               required="required"
+                              name="phoneNumber"
                            /><br/>
                         </Column>
                         <Button type="submit" margin="10px auto">Update</Button>

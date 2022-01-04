@@ -17,26 +17,33 @@ import Column from "../components/Column";
 export default function LoginPage() {
    const [email, setEmail] = useState("");
    const [password, setPassword] = useState("");
+
+
    const navigate = useNavigate();
 
    function handleOnSubmit(e) {
       e.preventDefault();
-      const payload = { email, password };
+
+      const payload = {
+         email,
+         password
+      };
       const url = "https://frebi.willandskill.eu/api-token-auth/";
+
       fetch(url, {
-         method: "POST",
-         headers: {
-            "Content-Type": "application/json",
-         },
-         body: JSON.stringify(payload)
-      })
+            method: "POST",
+            headers: {
+               "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload)
+         })
          .then(res => res.json())
          .then(data => {
             console.log(data)
             const token = data.token;
-            localStorage.setItem("exam", token)
+            localStorage.setItem("exam", token);
             navigate("/home")
-      })
+         })
    }
    return (
       <>
@@ -48,23 +55,24 @@ export default function LoginPage() {
                      <Link href="/auth/users/"> here</Link>
                   </Paragragh>
                </Column>
-               <Column col="4">
+               <Column col="4" width="80%">
                   <Form onSubmit={handleOnSubmit}>
                      <Row>
                         <Heading2 color="#fff">Login</Heading2>
                      </Row>
                      <Row flex>
-                        <Column col="4" color>
+                        <Column col="4" >
                            <Label htmlFor="email">Email: </Label>
                         </Column>
                         <Column col="8">
                            <Input
-                              type="text"
+                              type="email"
                               placeholder="Email"
                               value={email}
                               setValue={setEmail}
+                              pattern="!/\S+@\S+\.\S+/"
                               required="required"
-                           /><br/>
+                           /><br />
                         </Column>
                      </Row>
                      <Row flex>
@@ -77,8 +85,9 @@ export default function LoginPage() {
                               placeholder="Password"
                               value={password}
                               setValue={setPassword}
+                              pattern="^.{8,}$"
                               required="required"
-                           /><br/>
+                           /><br />
                         </Column>
                      </Row>
                      <Button type="submit">Login</Button>

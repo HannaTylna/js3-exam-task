@@ -94,6 +94,7 @@ export default function UserCreatePage() {
                      value={email}
                      setValue={setEmail}
                      required="required"
+                     pattern="!/\S+@\S+\.\S+/"
                   /><br/>
                </Column>
             </Row>
@@ -108,6 +109,7 @@ export default function UserCreatePage() {
                      value={password}
                      setValue={setPassword}
                      required="required"
+                     pattern="^.{8,}$"
                   /><br/>
                </Column>
             </Row>
