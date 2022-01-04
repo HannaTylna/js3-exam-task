@@ -5,7 +5,6 @@ import Heading1 from "../components/Heading1";
 import Heading2 from "../components/Heading2";
 import Paragragh from "../components/Paragragh";
 import Label from "../components/Label";
-import Input from "../components/Input";
 import Form from "../components/Form";
 import Button from "../components/Button";
 import Link from "../components/Link";
@@ -65,12 +64,11 @@ export default function LoginPage() {
                            <Label htmlFor="email">Email: </Label>
                         </Column>
                         <Column col="8">
-                           <Input
+                           <input
                               type="email"
                               placeholder="Email"
                               value={email}
-                              setValue={setEmail}
-                              pattern="!/\S+@\S+\.\S+/"
+                              onChange={e => setEmail(e.target.value)}
                               required="required"
                            /><br />
                         </Column>
@@ -80,12 +78,11 @@ export default function LoginPage() {
                            <Label htmlFor="password">Password: </Label>
                         </Column>
                         <Column col="8">
-                           <Input
+                           <input
                               type="password"
                               placeholder="Password"
                               value={password}
-                              setValue={setPassword}
-                              pattern="^.{8,}$"
+                              onChange={e => setPassword(e.target.value)}
                               required="required"
                            /><br />
                         </Column>

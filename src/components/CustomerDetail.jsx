@@ -1,30 +1,65 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { inputs } from './Variables';
 
 import Button from './Button';
-import Input from './Input';
+import FormInput from './FormInput';
 import Column from '../components/Column';
 import Form from './Form';
-import Row from './Row';
 import Heading2 from './Heading2';
 import Flex from './Flex';
 import Table from './Table';
-import TableBody from './TableBody';
+import TableBody from './TableBody'; 
 import NavBar from './NavBar';
 import Link from './Link';
 import Footer from './Footer';
 
 export default function CustomerDetail(props) {
    const [customerDetail, setCustomerDetail] = useState({});
-   const [name, setName] = useState("");
-   const [organisationNr, setOrganisationNr] = useState("");
-   const [vatNr, setVatNr] = useState("");
-   const [reference, setReference] = useState("");
-   const [paymentTerm, setPaymentTerm] = useState("");
-   const [website, setWebsite] = useState("");
-   const [email, setEmail] = useState("");
-   const [phoneNumber, setPhoneNumber] = useState("");
    const navigate = useNavigate();
+
+   const [values, setValues] = useState({
+      name: "",
+      organisationNr: "",
+      vatNr: "",
+      reference: "",
+      paymentTerm: "",
+      weebsite: "",
+      email: "",
+      phoneNumber: "",
+   });
+
+   const onChange = (e) => {
+      setValues({ ...values, [e.target.name]: e.target.value });
+   };
+
+   const handleSubmit = (e) => {
+      e.preventDefault();
+      
+      const url = `https://frebi.willandskill.eu/api/v1/customers/${props.id}/`;
+      const token = localStorage.getItem("exam");
+      const headers = {
+         'Content-Type': 'application/json',
+         'Authorization': `Bearer ${token}`
+      };
+      const payload = {
+         ...values
+      };
+      fetch(url, {
+         method: "PUT", //"PATCH"
+         headers: headers,
+         body: JSON.stringify(payload)
+      })
+         .then((result) => {
+            result.json()
+            .then(data => {
+               console.log(data);
+               setCustomerDetail(data);
+            })
+         })
+   };
+
+   
 
    useEffect(() => {
       function fetchData() {
@@ -61,6 +96,7 @@ export default function CustomerDetail(props) {
       })
       .then((res) => navigate("/home"))
    }
+
    function handleOnSelect(id) {
       console.log(id);
       const url = `https://frebi.willandskill.eu/api/v1/customers/${props.id}/`;
@@ -75,74 +111,11 @@ export default function CustomerDetail(props) {
       .then(res => res.json())
       .then(data => {
          console.log(data);
-         setName(customerDetail.name);
-         setOrganisationNr(customerDetail.organisationNr);
-         setVatNr(customerDetail.vatNr);
-         setReference(customerDetail.reference);
-         setPaymentTerm(customerDetail.paymentTerm);
-         setWebsite(customerDetail.website);
-         setEmail(customerDetail.email);
-         setPhoneNumber(customerDetail.phoneNumber);
+         setValues(customerDetail)
       })
    }
 
-   function handleOnSubmit(e) {
-      e.preventDefault();
-
-      const regexVatNr = /^SE[0-9]{10}$/;
-      const regexEmail = /^\w+([-]?\w+)*@\w+([-]?\w+)*(\.\w{2,3})+$/;
-
-      if (!regexVatNr.test(vatNr)) {
-         alert(
-            "Wrong format! You need to write SExxxxxxxxxx."
-         )
-         return false;
-      } 
-      
-      if (!regexEmail.test(email)) {
-         alert(
-            "You have entered an invalid email address!"
-         )
-         return false;
-      }
-
-      const url = `https://frebi.willandskill.eu/api/v1/customers/${props.id}/`;
-      const token = localStorage.getItem("exam");
-      const headers = {
-         'Content-Type': 'application/json',
-         'Authorization': `Bearer ${token}`
-      };
-      const payload = {
-         name,
-         organisationNr,
-         vatNr,
-         reference,
-         paymentTerm,
-         website,
-         email,
-         phoneNumber
-      };
-      fetch(url, {
-         method: "PUT", //"PATCH"
-         headers: headers,
-         body: JSON.stringify(payload)
-      })
-         .then((result) => {
-            result.json()
-            .then(data => {
-               console.log(data);
-               setCustomerDetail(data);
-               setName("")
-               setOrganisationNr("")
-               setVatNr("")
-               setReference("")
-               setPaymentTerm("")
-               setWebsite("")
-               setEmail("")
-               setPhoneNumber("")
-            })
-         })
-   }
+   
 
    return (
       <>
@@ -159,7 +132,7 @@ export default function CustomerDetail(props) {
                         />
                      </Link>
                   </Column>
-                  <Column col="7" width="80%">
+                  <Column col="5" width="80%">
                      <Heading2 margin="0px auto 20px auto" textTransform="none">You are viewing customer with id {customerDetail.id}</Heading2>
                      <Table background="#5f6a91">
                         <tbody>
@@ -210,91 +183,17 @@ export default function CustomerDetail(props) {
                         
                      </Flex>
                   </Column>
-                  <Column col="4" width="80%">
-                     <Form margin padding onSubmit={handleOnSubmit}>
-                        <Row>
-                           <Heading2 color="#fff">Update information</Heading2>
-                        </Row>
-                        <Column col="8" margin="5px auto">
-                           <Input
-                              type="text"
-                              placeholder="Name"
-                              value={name}
-                              setValue={setName}
-                              required="required"
-                              name="name"
-                           /><br />
-                        </Column>
-                        <Column col="8" margin="5px auto" >
-                           <Input
-                              type="text"
-                              placeholder="Organisation Number"
-                              value={organisationNr}
-                              setValue={setOrganisationNr}
-                              required="required"
-                              name="organisationNr"
-                           /><br/>
-                        </Column>
-                        <Column col="8" margin="5px auto">
-                           <Input
-                              type="text"
-                              placeholder="VAT number"
-                              value={vatNr}
-                              setValue={setVatNr}
-                              required="required"
-                              name="vatNr"
-                           /><br/>
-                        </Column>
-                        <Column col="8" margin="5px auto">
-                           <Input
-                              type="text"
-                              placeholder="Reference"
-                              value={reference}
-                              setValue={setReference}
-                              required="required"
-                              name="reference"
-                           /><br/>
-                        </Column>
-                        <Column col="8" margin="5px auto">
-                           <Input
-                              type="number"
-                              placeholder="Payment Term (days)"
-                              value={paymentTerm}
-                              setValue={setPaymentTerm}
-                              required="required"
-                              name="paymentTerm"
-                           /><br/>
-                        </Column>
-                        <Column col="8" margin="5px auto">
-                           <Input
-                              type="text"
-                              placeholder="Website"
-                              value={website}
-                              setValue={setWebsite}
-                              required="required"
-                              name="website"
-                           /><br/>
-                        </Column>
-                        <Column col="8" margin="5px auto">
-                           <Input
-                              type="text"
-                              placeholder="Email"
-                              value={email}
-                              setValue={setEmail}
-                              required="required"
-                              name="email"
-                           /><br/>
-                        </Column>
-                        <Column col="8" margin="5px auto">
-                           <Input
-                              type="text"
-                              placeholder="Phone Number"
-                              value={phoneNumber}
-                              setValue={setPhoneNumber}
-                              required="required"
-                              name="phoneNumber"
-                           /><br/>
-                        </Column>
+                  <Column col="5" width="80%">
+                     <Form onSubmit={handleSubmit}>
+                        <Heading2 color="#fff">Update information</Heading2>
+                        {inputs.map((input) => (
+                           <FormInput
+                              key={input.id}
+                              {...input}
+                              value={values[input.name]}
+                              onChange={onChange}
+                           />
+                        ))}
                         <Button type="submit" margin="10px auto">Update</Button>
                      </Form>
                   </Column>

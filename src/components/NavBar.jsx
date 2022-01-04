@@ -8,7 +8,7 @@ import NavBarCustomer from './NavBarCustomer';
 
 const StyledNavBar = styled.div`
 height: 80px;
-background: #499edf;
+background: #5f6a91;
 margin: 0px;
 position: fixed;
 width: 100%;

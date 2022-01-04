@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledForm = styled.form`
-border: ${props => props.border || "1px solid #808080"};
-width: ${props => props.width || "90%"};
+border-radius: 5px;
+width: ${props => props.width || "100%"};
 padding: ${props => props.padding || "10px"};
 margin: ${ props => props.margin || "0px auto" };
 background: rgb(73,158,223);

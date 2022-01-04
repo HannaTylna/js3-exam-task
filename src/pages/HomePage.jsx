@@ -41,7 +41,7 @@ export default function HomePage() {
       <>
          <NavBar />
          <Flex display="block" margin="100px 50px 100px 50px">
-            <Column width="100%" col="8" >
+            <Column width="100%" col="6" >
                <Heading2 margin="10px auto 20px auto">Customers</Heading2>
                <Table background="#5f6a91">
                   <thead>
@@ -71,7 +71,7 @@ export default function HomePage() {
                </Table>
                
             </Column>
-            <Column col="4" width="80%" >
+            <Column col="5" width="90%" >
                <CustomerCreate onSuccess={fetchData} />
             </Column>
          </Flex>
