@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useCallback } from "react";
+import React, { useContext} from "react";
 import { MyDataContext } from "../App";
 
 import CustomerCreate from "../components/CustomerCreate";
@@ -12,29 +12,9 @@ import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 
 
-export default function HomePage() {
-   const { customerList, setCustomerList } = useContext(MyDataContext);
+export default function HomePage(props) {
+   const { customerList } = useContext(MyDataContext);
 
-   const fetchData = useCallback(() => {
-      const url = "https://frebi.willandskill.eu/api/v1/customers/"
-      const token = localStorage.getItem("exam");
-      fetch(url, {
-         method: "GET",
-         headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`
-         }
-      })
-         .then((res) => res.json())
-         .then((data) => {
-            console.log(data.results)
-            return setCustomerList(data.results)
-         })
-   }, [setCustomerList]);
-
-   useEffect(() => {
-      fetchData();
-   }, [fetchData])
 
    
    return (
@@ -72,7 +52,7 @@ export default function HomePage() {
                
             </Column>
             <Column col="5" width="90%" >
-               <CustomerCreate onSuccess={fetchData} />
+               <CustomerCreate onSuccess={props.refresh} />
             </Column>
          </Flex>
          <Footer />

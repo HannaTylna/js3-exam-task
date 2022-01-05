@@ -1,4 +1,4 @@
-import React, { useState, createContext }  from "react";
+import React, { useState, createContext, useCallback, useEffect }  from "react";
 import { Route, Routes } from "react-router-dom";
 
 import "./App.css";
@@ -16,6 +16,45 @@ function App() {
 
    const [customerList, setCustomerList] = useState(null);
    const [myData, setMyData] = useState(null);
+
+   const fetchData = useCallback(() => {
+      const url = "https://frebi.willandskill.eu/api/v1/customers/"
+      const token = localStorage.getItem("exam");
+      fetch(url, {
+         method: "GET",
+         headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+         }
+      })
+         .then((res) => res.json())
+         .then((data) => {
+            console.log(data.results)
+            setCustomerList(data.results)
+         })
+   }, [setCustomerList]);
+
+   useEffect(() => {
+      fetchData();
+   }, [fetchData])
+
+   const getUserInformation = useCallback(() => {
+      const token = localStorage.getItem("exam");
+      const url = "https://frebi.willandskill.eu/api/v1/me";
+      fetch(url, {
+         method: "GET",
+         headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+         }
+      })
+         .then(res => res.json())
+         .then(data => setMyData(data))
+   }, [setMyData]);
+
+   useEffect(() => {
+      getUserInformation();
+   }, [getUserInformation])
    
 
    return (
@@ -23,8 +62,8 @@ function App() {
          <Container>
             <Routes>
                <Route path="/" element={<LoginPage /> }/>
-               <Route path="/home" element={<HomePage />} />
-               <Route path="/home/:id" element={<CustomerDetailPage />}/>
+               <Route path="/home" element={<HomePage refresh = {fetchData} />} />
+               <Route path="/home/:id" element={<CustomerDetailPage refresh={getUserInformation} refresh_customer = {fetchData}/>}/>
                <Route path="/auth/users/" element={<UserCreatePage />} />
                <Route path="/activate" element={<ActivateTextPage />} />
                <Route path="/login" element={<UserActivatePage />} />

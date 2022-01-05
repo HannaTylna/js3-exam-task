@@ -94,7 +94,10 @@ export default function CustomerDetail(props) {
          method: "DELETE",
          headers: headers
       })
-      .then((res) => navigate("/home"))
+         .then((res) => {
+            props.refresh_customer()
+            navigate("/home")
+         })
    }
 
    function handleOnSelect(id) {
@@ -121,7 +124,7 @@ export default function CustomerDetail(props) {
       <>
          {customerDetail ? (
             <>
-               <NavBar />
+               <NavBar refresh={props.refresh}/>
                <Flex display="block" margin="100px 50px 100px 50px">
                   
                   <Column margin="5px" col="1">

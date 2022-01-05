@@ -1,28 +1,12 @@
-import React, { useContext, useEffect, useCallback } from 'react';
+import React, { useContext } from 'react';
 
 import { MyDataContext } from '../App';
 import Paragragh from '../components/Paragragh';
 
 export default function MyData() {
-   const { myData, setMyData } = useContext(MyDataContext);
+   const { myData } = useContext(MyDataContext);
 
-   const getUserInformation = useCallback(() => {
-      const token = localStorage.getItem("exam");
-      const url = "https://frebi.willandskill.eu/api/v1/me";
-      fetch(url, {
-         method: "GET",
-         headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`
-         }
-      })
-         .then(res => res.json())
-         .then(data => setMyData(data))
-   }, [setMyData]);
-
-   useEffect(() => {
-      getUserInformation();
-   }, [getUserInformation])
+   
 
    return (
       <>
