@@ -120,7 +120,7 @@ export default function UserCreatePage() {
                   key={input.id}
                   {...input}
                   value={values[input.name]}
-                  onChange={onChange}
+                  onChange={setValues}
                />
             ))}
             <Button type="submit">Sign in</Button>

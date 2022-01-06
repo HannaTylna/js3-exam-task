@@ -32,11 +32,11 @@ function App() {
             console.log(data.results)
             setCustomerList(data.results)
          })
-   }, [setCustomerList]);
+   }, []);
 
    useEffect(() => {
       fetchData();
-   }, [fetchData])
+   }, [])
 
    const getUserInformation = useCallback(() => {
       const token = localStorage.getItem("exam");
@@ -50,11 +50,11 @@ function App() {
       })
          .then(res => res.json())
          .then(data => setMyData(data))
-   }, [setMyData]);
+   }, []);
 
    useEffect(() => {
       getUserInformation();
-   }, [getUserInformation])
+   }, [])
    
 
    return (

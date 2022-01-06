@@ -24,7 +24,7 @@ export default function CustomerDetail(props) {
       vatNr: "",
       reference: "",
       paymentTerm: "",
-      weebsite: "",
+      website: "",
       email: "",
       phoneNumber: "",
    });
@@ -182,8 +182,6 @@ export default function CustomerDetail(props) {
                         </tbody>
                      </Table>
                      <Flex>
-                        
-                        
                      </Flex>
                   </Column>
                   <Column col="5" width="80%">

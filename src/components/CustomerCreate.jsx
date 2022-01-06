@@ -14,7 +14,7 @@ const [values, setValues] = useState({
       vatNr: "",
       reference: "",
       paymentTerm: "",
-      weebsite: "",
+      website: "",
       email: "",
       phoneNumber: "",
 });
